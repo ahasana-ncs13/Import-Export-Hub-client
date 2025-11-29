@@ -1,5 +1,6 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../ContextApi/AuthContext";
 
 const Register = () => {
   const handleRegisterForm = (e) => {
@@ -48,7 +49,7 @@ const Register = () => {
               name="password"
             />
 
-            <button className="btn bg-primary text-white mt-4">Login</button>
+            <button className="btn bg-primary text-white mt-4">Register</button>
           </fieldset>
         </form>
         <p className="font-semibold">
