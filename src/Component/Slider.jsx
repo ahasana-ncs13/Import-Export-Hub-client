@@ -43,7 +43,7 @@ const Slider = () => {
         {
             data.map(slide => <SwiperSlide key={slide._id}>
                 <h1 className="text-center text-xl mb-3 text-primary font-semibold">{slide.caption}</h1>
-                <img className="w-250 mx-auto h-150 rounded-2xl object-cover" src={slide.image_url} alt={slide.product} />
+                <img className="w-500 mx-auto h-140 rounded-2xl object-cover" src={slide.image_url} alt={slide.product} />
             </SwiperSlide>) 
         }
         
