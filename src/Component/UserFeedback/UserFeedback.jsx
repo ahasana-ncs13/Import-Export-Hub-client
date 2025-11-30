@@ -28,9 +28,9 @@ const UserFeedback = () => {
 
   return (
     
-    <section className=" bg-primary">
+    <section className=" bg-primary py-8 px-5">
         <div className="max-w-5xl mx-auto py-10">
-        <div className="w-xl mx-auto pb-10 text-center">
+        <div className="max-w-xl mx-auto pb-10 text-center">
       <h2 className="text-4xl font-bold  mb-5 text-secondary">
         What Our Users Say
       </h2>

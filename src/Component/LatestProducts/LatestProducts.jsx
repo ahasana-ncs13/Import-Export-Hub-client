@@ -13,7 +13,7 @@ const LatestProducts = () => {
   }, []);
   return (
     <div className="py-10 bg-primary">
-      <div className="w-200 mx-auto text-center my-10">
+      <div className="max-w-200 mx-auto text-center my-10">
         <h1 className="text-4xl pb-3 font-semibold text-secondary">New Arrivals - Freshly Added Products</h1>
         <p className="font-medium text-gray-200">
           Stay updated with our latest high-quality imports and exports. This
@@ -22,7 +22,7 @@ const LatestProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-10 w-11/12 mx-auto">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-10 w-11/12 mx-auto">
         {data.map((product) => (
           <ProductCard product={product} key={product._id}></ProductCard>
         ))}
