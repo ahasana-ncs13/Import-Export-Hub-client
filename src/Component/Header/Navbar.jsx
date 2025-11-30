@@ -56,8 +56,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl">
-            <span className="">ImportExport</span><sub>Hub</sub>
+          <Link to="/" className="text-xl">
+            <span className="text-lime-300 font-bold">ImportExport</span><sub>Hub</sub>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill=" white" d="M929 38c-12-5-24-8-36-8l-17 15H124l-17-15c-12 0-24 3-36 8L40 50l31 13c12 5 24 7 37 7l16-15h752l17 15c12 0 24-2 36-7l31-13-31-12Z"></path></svg>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

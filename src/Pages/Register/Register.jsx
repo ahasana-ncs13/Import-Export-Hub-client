@@ -11,7 +11,8 @@ const Register = () => {
     const password = e.target.password.value;
 
     console.log(name, email, photourl, password);
-  };
+  }
+
   return (
     <div className="text-white mt-20">
       <div className="w-95 mx-auto card-body bg-primary">
@@ -54,7 +55,7 @@ const Register = () => {
         </form>
         <p className="font-semibold">
           Already Have An Account?{" "}
-          <Link className="hover:underline" to="/login">
+          <Link className="hover:underline text-lime-300" to="/login">
             Login
           </Link>
         </p>

@@ -4,7 +4,7 @@
   name: "light";
   default: true;
   --color-primary:oklch(45% 0.085 224.283) ;
-  --color-secondary: oklch(98.7% 0.022 95.277) ;
-  --color-accent:oklch(59.2% 0.249 0.584);
+  --color-secondary: #bbf451 ;
+  /* --color-accent:oklch(59.2% 0.249 0.584); */
 
 }
