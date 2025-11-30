@@ -22,7 +22,7 @@ const LatestProducts = () => {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-10 w-11/12 mx-auto">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 w-11/12 mx-auto">
         {data.map((product) => (
           <ProductCard product={product} key={product._id}></ProductCard>
         ))}

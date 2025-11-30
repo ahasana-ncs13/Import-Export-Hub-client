@@ -1,7 +1,21 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, Links } from "react-router";
+import { AuthContext } from "../../ContextApi/AuthContext";
 
 const Navbar = () => {
+
+  const {user,logoutUser}=use(AuthContext)
+
+  const handleLogout=()=>{
+    logoutUser()
+    .then(()=>{
+
+    })
+    .catch(error=>{
+      console.log(error.message())
+    })
+  }
+
   const links = (
     <>
       <li>
@@ -65,7 +79,14 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to='/login' className="btn bg-white text-primary w-25 ">Login</Link>
+          {
+            user?
+            <div className="flex gap-3 object-cover items-center">
+              <img className="bg-white border-2 w-10 h-10 rounded-full " src={user.photoURL} alt="" />
+              <button onClick={handleLogout} className="btn bg-white text-primary w-25 ">LogOut</button>
+            </div>:<Link to='/login' className="btn bg-white text-primary w-25 ">Login</Link>
+          }
+          
         </div>
       </div>
     </div>
