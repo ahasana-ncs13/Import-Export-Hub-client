@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router";
+import React from 'react';
+import { Link } from 'react-router';
 
-const ProductCard = ({ product }) => {
-  const {
+const AllProductsCard = ({product}) => {
+   const {
     product_images,
     product_name,
     price_min,
@@ -55,4 +55,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default AllProductsCard;

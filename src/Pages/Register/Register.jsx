@@ -29,7 +29,6 @@ const Register = () => {
       .then((result) => {
         e.target.reset();
         navigate("/");
-        // result.user={displayName : name, photoURL: photourl}
         console.log(result.user);
       })
       .catch((error) => {
@@ -51,7 +50,7 @@ const Register = () => {
   };
 
   return (
-    <div className="text-white mt-20">
+    <div className="text-white mt-20 min-h-screen">
       <div className="w-95 mx-auto card-body bg-primary">
         <h1 className="text-3xl font-bold text-center">Register Now !</h1>
         <form onSubmit={handleRegisterForm}>

@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="text-white mt-20">
+    <div className="text-white mt-20 min-h-screen">
       <div className="w-95 mx-auto card-body bg-primary">
         <h1 className="text-3xl font-bold text-center ">Login Now !</h1>
         <form onSubmit={handleLoginForm}>
@@ -49,6 +49,7 @@ const Login = () => {
               className="input text-primary"
               placeholder="Email"
               name="email"
+              required
             />
             <label className="label">Password</label>
             <input
@@ -56,6 +57,7 @@ const Login = () => {
               className="input text-primary"
               placeholder="Password"
               name="password"
+              required
             />
             <p className="text-red-500 font-semibold">
                 {
@@ -98,7 +100,7 @@ const Login = () => {
                   ></path>
                 </g>
               </svg>
-              signUp with Google
+              Login with Google
             </button>
           </fieldset>
         </form>
