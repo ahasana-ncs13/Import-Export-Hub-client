@@ -1,10 +1,15 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useRef } from "react";
 import { useLoaderData } from "react-router";
 import { CheckCircle, Truck, Star } from "lucide-react";
 
 const ProductDetails = () => {
   const data = useLoaderData();
-//   console.log(data);
+  const importModalRef = useRef(null);
+
+  const handleModal = () => {
+    importModalRef.current.showModal();
+  };
+  //   console.log(data);
   const {
     product_name,
     product_images,
@@ -20,11 +25,14 @@ const ProductDetails = () => {
     shipping,
   } = data;
 
+  const handleModalForm=(e)=>{
+    e.preventDefault()
+  }
+
   return (
     <div className="w-11/12 mx-auto my-10  bg-primary rounded-xl shadow-lg text-lg">
       {/* IMAGE + BASIC INFO */}
       <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-8 p-6 ">
-
         {/* Image */}
         <div>
           <img
@@ -32,25 +40,28 @@ const ProductDetails = () => {
             alt={product_name}
             className="rounded-xl w-full h-210 object-cover"
           />
-           
         </div>
 
         <div className="">
           {/* Basic Info */}
           <div className="rounded-xl shadow-lg bg-white mt-10  p-6">
             <h1 className="text-4xl font-bold text-primary">{product_name}</h1>
-            <p className="badge mt-2 text-lg bg-primary text-secondary p-4 font-semibold">{category}</p>
+            <p className="badge mt-2 text-lg bg-primary text-secondary p-4 font-semibold">
+              {category}
+            </p>
 
             <div className="flex items-center gap-2 mt-3">
-              {[1, 2, 3, 4,5].map((num) => (
-                        <Star
-                          key={num}
-                          size={20}
-                          className={`${
-                            rating >= num ? "text-yellow-800 fill-yellow-400" : "text-yellow-800"
-                        }`}
-                        />
-                      ))}
+              {[1, 2, 3, 4, 5].map((num) => (
+                <Star
+                  key={num}
+                  size={20}
+                  className={`${
+                    rating >= num
+                      ? "text-yellow-800 fill-yellow-400"
+                      : "text-yellow-800"
+                  }`}
+                />
+              ))}
               <span className="text-lg font-semibold">({rating}/5)</span>
             </div>
 
@@ -67,21 +78,58 @@ const ProductDetails = () => {
               <span className="text-primary">Available:</span>{" "}
               {available_quantity}
             </p>
-            <button className="btn bg-primary text-secondary font-bold text-lg p-7 rounded-2xl w-full my-5 hover:text-white">Import Now </button>
+
+            <button
+              onClick={handleModal}
+              className="btn bg-primary text-secondary font-bold text-lg p-7 border-none w-full my-5 hover:text-white"
+            >
+              Import Now{" "}
+            </button>
+            <dialog
+              ref={importModalRef}
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <h3 className="font-bold text-xl text-primary text-center ">
+                  Import Products
+                </h3>
+                <form onSubmit={handleModalForm}>
+                  <fieldset className="fieldset w-8/12 mx-auto">
+                    <label className="label">Email</label>
+                    <input type="email" className="input" placeholder="Email" />
+                    <label className="label">Quantity</label>
+                    <input
+                      type="text"
+                      className="input"
+                      placeholder="Enter quantity"
+                    />
+
+                    <div className="modal-action">
+                      <button className="btn bg-primary text-white border-none mt-4 w-full">
+                        Submit
+                      </button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </dialog>
           </div>
           {/* DESCRIPTION */}
           <div className="mt-10 p-6 rounded-xl shadow-lg bg-white">
-            <h2 className="text-2xl font-bold mb-3 text-primary">Product Description</h2>
+            <h2 className="text-2xl font-bold mb-3 text-primary">
+              Product Description
+            </h2>
             <p className="leading-relaxed">{description}</p>
           </div>
         </div>
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-10 p-10">
-
         {/* SPECIFICATIONS */}
         <div className="mt-10 bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold text-primary mb-3">Specifications</h2>
+          <h2 className="text-2xl font-bold text-primary mb-3">
+            Specifications
+          </h2>
           <ul className="space-y-2">
             <li>
               <strong>Weight:</strong> {specifications.weight}
@@ -97,7 +145,9 @@ const ProductDetails = () => {
 
         {/* SELLER INFORMATION */}
         <div className="mt-10 bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold mb-3 text-primary">Seller Information</h2>
+          <h2 className="text-2xl font-bold mb-3 text-primary">
+            Seller Information
+          </h2>
 
           <p className="text-lg font-semibold">{seller_info.company}</p>
 
@@ -111,7 +161,9 @@ const ProductDetails = () => {
 
         {/* SHIPPING */}
         <div className="mt-10 bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold mb-3 text-primary">Shipping Details</h2>
+          <h2 className="text-2xl font-bold mb-3 text-primary">
+            Shipping Details
+          </h2>
 
           <div className="flex items-center gap-3">
             <Truck size={20} />
