@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
 
         {/* See Details Button */}
         <Link
-          to={`http://localhost:3000/productinfo/${_id}`}
+          to={`/productdetails/${_id}`}
           className="mt-4 block text-center bg-secondary py-2 rounded-lg text-primary font-bold hover:bg-lime-600 transition hover:text-white"
         >
           See Details
