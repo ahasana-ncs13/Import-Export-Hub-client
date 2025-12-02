@@ -24,18 +24,18 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link to="" className="mr-2">
-          My Exports
-        </Link>
-      </li>
-      <li>
-        <Link to="" className="mr-2">
+        <Link to="/myimports" className="mr-2">
           My Imports
         </Link>
       </li>
       <li>
-        <Link to="">
-          Export routes
+        <Link to="/addexports">
+          Add Export 
+        </Link>
+      </li>
+      <li>
+        <Link to="" className="mr-2">
+          My Exports
         </Link>
       </li>
     </>
