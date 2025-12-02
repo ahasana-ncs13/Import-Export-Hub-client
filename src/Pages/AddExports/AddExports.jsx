@@ -1,6 +1,10 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../ContextApi/AuthContext";
+import Swal from "sweetalert2";
 
 const AddExports = () => {
+    const {user}=use(AuthContext)
+
   const handleExportForm = (e) => {
     e.preventDefault();
     const product_name = e.target.name.value;
@@ -9,7 +13,7 @@ const AddExports = () => {
     const price_max = e.target.max_price.value;
     const rating = e.target.rating.value;
     const origin_country = e.target.Origin.value;
-    const available_quantity = e.target.quantity.value;
+    const available_quantity = parent(e.target.quantity.value);
 
     console.log(
       product_name,
@@ -28,9 +32,10 @@ const AddExports = () => {
       rating,
       origin_country,
       available_quantity,
+      email:user.email
     };
 
-    fetch("http://localhost:3000/productinfo", {
+    fetch("http://localhost:3000/myexports", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,6 +46,13 @@ const AddExports = () => {
       .then((data) => {
         e.target.reset()
         console.log(data);
+        if (data.insertedId) {
+                  Swal.fire({
+                  title: "Import Completed!",
+                  text: "The product has been added to your import records",
+                  icon: "success",
+                });
+                }
       });
   };
   return (
