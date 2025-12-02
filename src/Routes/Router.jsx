@@ -7,6 +7,8 @@ import AllProducts from "../Pages/AllProducts/AllProducts";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import MyImports from "../Pages/MyImports/MyImports";
 import AddExports from "../Pages/AddExports/AddExports";
+import MyExports from "../Pages/MyExports/MyExports";
+import PrivateRoutes from "./PrivateRoutes";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -32,18 +34,31 @@ export const router = createBrowserRouter([
         },
         {
             path:'/productdetails/:id',
-            element:<ProductDetails></ProductDetails>,
+            element:<PrivateRoutes>
+            <ProductDetails></ProductDetails>
+            </PrivateRoutes>,
             loader: ({params})=> fetch(`http://localhost:3000/productinfo/${params.id}`)
         },
         {
             path:'/myimports',
-            element:<MyImports></MyImports>,
-            loader:()=> fetch('http://localhost:3000/myimports')
+            element:<PrivateRoutes>
+            <MyImports></MyImports>
+            </PrivateRoutes>,
+            // loader:()=> fetch('http://localhost:3000/myimports')
         },
         {
             path:'/addexports',
-            element:<AddExports></AddExports>
-        }
+            element:<PrivateRoutes>
+            <AddExports></AddExports>
+            </PrivateRoutes>
+        },
+        {
+            path:'/myexports',
+            element:<PrivateRoutes>
+            <MyExports></MyExports>
+            </PrivateRoutes>,
+            loader:()=> fetch('http://localhost:3000/myimports')
+        },
     ]
   },
 ]);

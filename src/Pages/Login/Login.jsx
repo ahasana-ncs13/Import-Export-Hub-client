@@ -1,11 +1,14 @@
 import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../ContextApi/AuthContext";
 
 const Login = () => {
     const{signInUser,googleUser}=use(AuthContext)
     const [error, setError] = useState("");
+    
+    const location = useLocation()
     const navigate = useNavigate();
+    // console.log(location)
 
   const handleLoginForm = (e) => {
     e.preventDefault();
@@ -16,7 +19,7 @@ const Login = () => {
     console.log(email, password);
     signInUser(email, password)
     .then(result=>{
-        navigate('/')
+        navigate(location.state||'/')
         console.log(result.user); 
     })
     .catch(error =>{
@@ -28,7 +31,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleUser()
       .then((result) => {
-        navigate('/')
+        navigate(location.state||'/')
         console.log(result.user);
       })
       .catch((error) => {

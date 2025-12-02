@@ -1,9 +1,11 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, use, useRef, useState } from "react";
 import { useLoaderData } from "react-router";
 import { CheckCircle, Truck, Star } from "lucide-react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../ContextApi/AuthContext";
 
 const ProductDetails = () => {
+  const {user}=use(AuthContext)
   const data = useLoaderData();
   const importModalRef = useRef(null);
 
@@ -48,6 +50,7 @@ const ProductDetails = () => {
       origin_country,
       Quantity,
       id:_id,
+      email:user.email
     };
 
     fetch(`http://localhost:3000/myimports/${data._id}`, {

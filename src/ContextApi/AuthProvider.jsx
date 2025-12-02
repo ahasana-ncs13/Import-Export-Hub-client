@@ -5,18 +5,22 @@ import { auth } from '../Firebase/Firebase.init';
 
 const AuthProvider = ({children}) => {
     const [user ,setUser]=useState(null)
+    const [loading ,setLoading]=useState(true)
 
     const googleProvider = new GoogleAuthProvider();
 
     const googleUser =()=>{
+        setLoading(true)
         return signInWithPopup(auth , googleProvider)
     }
 
     const createUser =(email,password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const signInUser =(email,password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -27,6 +31,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser=>{
             setUser(currentUser)
+            setLoading(false)
             console.log(currentUser)
         })
 
@@ -38,6 +43,7 @@ const AuthProvider = ({children}) => {
 
     const authInfo={
         user,
+        loading,
         googleUser,
         createUser,
         signInUser,

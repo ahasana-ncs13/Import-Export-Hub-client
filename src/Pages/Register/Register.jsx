@@ -1,11 +1,12 @@
 import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../ContextApi/AuthContext";
 
 const Register = () => {
   const { createUser, googleUser } = use(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation()
 
   const strongPassword = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
 
@@ -28,7 +29,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         e.target.reset();
-        navigate("/");
+        navigate(location.state||'/');
         console.log(result.user);
       })
       .catch((error) => {
@@ -40,7 +41,7 @@ const Register = () => {
   const handleGoogleSignUp = () => {
     googleUser()
       .then((result) => {
-        navigate("/");
+        navigate(location.state||'/');
         console.log(result.user);
       })
       .catch((error) => {

@@ -1,11 +1,21 @@
-import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../ContextApi/AuthContext";
 
 const MyImports = () => {
-  const importsData = useLoaderData();
-  console.log(importsData);
-  const [importedData, setImportsData] = useState(importsData);
+  const { user } = use(AuthContext);
+    const [importedData, setImportedData] = useState([]);
+
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`http://localhost:3000/myimports?email=${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setImportedData(data));
+    }
+  }, [user]);
+  console.log(importedData);
+
 
   const handleRemoveImports = (id) => {
     fetch(`http://localhost:3000/myimports/${id}`, {
@@ -31,10 +41,10 @@ const MyImports = () => {
                 icon: "success",
               });
 
-              const remaining = importsData.filter(
+              const remaining = importedData.filter(
                 (imports) => imports._id !== id
               );
-              setImportsData(remaining);
+              setImportedData(remaining);
             }
           });
         }
