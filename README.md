@@ -1,16 +1,28 @@
-# React + Vite
+Import Export Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web platform to browse global products, manage exports, and import products to your personal "My Imports" section. Clean UI, secure data, and real-time updates.
 
-Currently, two official plugins are available:
+Live Site: [Import Export Hub Client](https://import-export-hub-f5488.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
+1.Browse all products with images, prices, ratings, and availability.
+2.View latest products in a 3-column grid on the Home page.
+3.Import products with quantity validation in My Imports.
+4.Add, update, and delete your exported products in My Exports.
+5.User authentication with email/password and Google login.
 
-## React Compiler
+Pages
+1.Home: slider, latest products, extra sections.
+2.All Products: Full product list with "See Details".
+3.Product Details: Full info and “Import Now” feature.
+4.My Imports: View and manage imported products.
+5.Add Export/Product: Add new products to export.
+6.My Exports: View, update, and delete exported products.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Tech Stack
+1.React + DaisyUI
+2.Node.js + Express
+3.MongoDB Atlas
+4.Firebase Authentication
+5.Vercel deployment

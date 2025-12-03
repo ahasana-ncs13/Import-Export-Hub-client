@@ -39,7 +39,7 @@ const AddExports = () => {
       email: user.email,
     };
 
-    fetch("http://localhost:3000/myexports", {
+    fetch("https://import-export-hub-server-phi.vercel.app/myexports", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

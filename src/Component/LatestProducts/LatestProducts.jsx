@@ -4,7 +4,7 @@ import ProductCard from "../Products/ProductCard";
 const LatestProducts = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/latestproduct")
+    fetch("https://import-export-hub-server-phi.vercel.app/latestproduct")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

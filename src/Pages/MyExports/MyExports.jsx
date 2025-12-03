@@ -14,7 +14,7 @@ const MyExports = () => {
 
   useEffect(() => {
     if (user.email) {
-      fetch(`http://localhost:3000/myexports?email=${user.email}`)
+      fetch(`https://import-export-hub-server-phi.vercel.app/myexports?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setMyExports(data);
@@ -34,7 +34,7 @@ const MyExports = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/myexports/${id}`, {
+        fetch(`https://import-export-hub-server-phi.vercel.app/myexports/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -107,7 +107,7 @@ const MyExports = () => {
       rating,
     };
 
-    fetch(`http://localhost:3000/myexports/${selectedProduct._id}`, {
+    fetch(`https://import-export-hub-server-phi.vercel.app/myexports/${selectedProduct._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

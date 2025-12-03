@@ -54,7 +54,7 @@ const ProductDetails = () => {
       email:user.email
     };
 
-    fetch(`http://localhost:3000/myimports/${data._id}`, {
+    fetch(`https://import-export-hub-server-phi.vercel.app/myimports/${data._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -15,7 +15,7 @@ const Slider = () => {
     const [data , setData]=useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/slider')
+    fetch('https://import-export-hub-server-phi.vercel.app/slider')
     .then(res=>res.json())
     .then(data=>{
         setData(data)

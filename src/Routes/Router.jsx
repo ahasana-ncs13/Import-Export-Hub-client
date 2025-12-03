@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
         {
             path:'/allproducts',
             Component:AllProducts,
-             loader: () => fetch('http://localhost:3000/productinfo'),
+             loader: () => fetch('https://import-export-hub-server-phi.vercel.app/productinfo'),
              hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
         },
         {
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             element:(<PrivateRoutes>
             <ProductDetails></ProductDetails>
             </PrivateRoutes>),
-            loader: ({params})=> fetch(`http://localhost:3000/productinfo/${params.id}`),
+            loader: ({params})=> fetch(`https://import-export-hub-server-phi.vercel.app/productinfo/${params.id}`),
             hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
         },
         {
@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
             element:(<PrivateRoutes>
             <MyExports></MyExports>
             </PrivateRoutes>),
-            loader:()=> fetch('http://localhost:3000/myimports'),
+            loader:()=> fetch('https://import-export-hub-server-phi.vercel.app/myimports'),
             hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
         },
     ]
