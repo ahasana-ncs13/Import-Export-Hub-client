@@ -30,14 +30,16 @@ export const router = createBrowserRouter([
         {
             path:'/allproducts',
             Component:AllProducts,
-             loader: () => fetch('http://localhost:3000/productinfo')
+             loader: () => fetch('http://localhost:3000/productinfo'),
+             hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
         },
         {
             path:'/productdetails/:id',
             element:(<PrivateRoutes>
             <ProductDetails></ProductDetails>
             </PrivateRoutes>),
-            loader: ({params})=> fetch(`http://localhost:3000/productinfo/${params.id}`)
+            loader: ({params})=> fetch(`http://localhost:3000/productinfo/${params.id}`),
+            hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
         },
         {
             path:'/myimports',
@@ -56,7 +58,8 @@ export const router = createBrowserRouter([
             element:(<PrivateRoutes>
             <MyExports></MyExports>
             </PrivateRoutes>),
-            loader:()=> fetch('http://localhost:3000/myimports')
+            loader:()=> fetch('http://localhost:3000/myimports'),
+            hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
         },
     ]
   },

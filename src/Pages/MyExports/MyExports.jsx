@@ -125,9 +125,15 @@ const MyExports = () => {
         );
         console.log(data);
         if (data.modifiedCount) {
+          Swal.fire({
+                      title: "Product Update Completed!",
+                      text: "The product has been updated to your exports records",
+                      icon: "success",
+                    });
           data.id === selectedProduct._id;
           const newProducts = [...selectedProduct, updateProducts];
           setSelectedProduct(newProducts);
+          
         }
       });
   };
