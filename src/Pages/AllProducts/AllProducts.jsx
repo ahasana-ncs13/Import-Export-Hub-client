@@ -2,12 +2,16 @@ import React from "react";
 import { useLoaderData } from "react-router";
 import ProductCard from "../../Component/Products/ProductCard";
 import AllProductsCard from "../../Component/Products/AllProductsCard";
+import { Helmet } from "react-helmet";
 
 const AllProducts = () => {
   const data = useLoaderData();
   // console.log(data)
   return (
     <div className="w-11/12 mx-auto py-10">
+      <Helmet>
+        <title>All Products - Import Export Hub</title>
+      </Helmet>
       <div className="max-w-200 mx-auto text-center my-5">
         <h1 className="text-4xl font-bold text-secondary mb-2">
           Global Product Catalog

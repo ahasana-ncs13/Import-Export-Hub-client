@@ -34,29 +34,28 @@ export const router = createBrowserRouter([
         },
         {
             path:'/productdetails/:id',
-            element:<PrivateRoutes>
+            element:(<PrivateRoutes>
             <ProductDetails></ProductDetails>
-            </PrivateRoutes>,
+            </PrivateRoutes>),
             loader: ({params})=> fetch(`http://localhost:3000/productinfo/${params.id}`)
         },
         {
             path:'/myimports',
-            element:<PrivateRoutes>
+            element:(<PrivateRoutes>
             <MyImports></MyImports>
-            </PrivateRoutes>,
-            // loader:()=> fetch('http://localhost:3000/myimports')
+            </PrivateRoutes>),
         },
         {
             path:'/addexports',
-            element:<PrivateRoutes>
+            element:(<PrivateRoutes>
             <AddExports></AddExports>
-            </PrivateRoutes>
+            </PrivateRoutes>)
         },
         {
             path:'/myexports',
-            element:<PrivateRoutes>
+            element:(<PrivateRoutes>
             <MyExports></MyExports>
-            </PrivateRoutes>,
+            </PrivateRoutes>),
             loader:()=> fetch('http://localhost:3000/myimports')
         },
     ]

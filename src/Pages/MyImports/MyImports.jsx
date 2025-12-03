@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../ContextApi/AuthContext";
+import { Helmet } from "react-helmet";
 
 const MyImports = () => {
   const { user } = use(AuthContext);
@@ -52,6 +53,9 @@ const MyImports = () => {
 
   return (
     <div className="mb-10">
+      <Helmet>
+        <title>My Imports - Import Export Hub</title>
+      </Helmet>
       <div className="text-center max-w-160 mx-auto my-10">
         <h1 className="text-3xl text-primary font-semibold mb-3">
           My Import Orders

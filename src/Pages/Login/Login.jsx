@@ -1,6 +1,7 @@
 import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../ContextApi/AuthContext";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
     const{signInUser,googleUser}=use(AuthContext)
@@ -42,6 +43,9 @@ const Login = () => {
 
   return (
     <div className="text-white mt-20 min-h-screen">
+      <Helmet>
+        <title>Login - Import Export Hub</title>
+      </Helmet>
       <div className="w-95 mx-auto card-body bg-primary">
         <h1 className="text-3xl font-bold text-center ">Login Now !</h1>
         <form onSubmit={handleLoginForm}>

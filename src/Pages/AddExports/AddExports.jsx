@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { AuthContext } from "../../ContextApi/AuthContext";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AddExports = () => {
   const { user } = use(AuthContext);
@@ -60,6 +61,9 @@ const AddExports = () => {
   };
   return (
     <div className="w-11/12 mx-auto mb-10 text-white min-h-screen">
+        <Helmet>
+        <title>Add Exports - Import Export Hub</title>
+      </Helmet>
       <div className="max-w-200 mx-auto text-center my-10">
         <h1 className="text-3xl text-primary font-medium mb-5">
           Add New Export Product
