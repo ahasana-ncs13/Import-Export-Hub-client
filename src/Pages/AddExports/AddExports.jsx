@@ -3,19 +3,21 @@ import { AuthContext } from "../../ContextApi/AuthContext";
 import Swal from "sweetalert2";
 
 const AddExports = () => {
-    const {user}=use(AuthContext)
+  const { user } = use(AuthContext);
 
   const handleExportForm = (e) => {
     e.preventDefault();
+    const _id = e.target.id.value;
     const product_name = e.target.name.value;
     const product_images = e.target.image.value;
     const price_min = e.target.min_price.value;
     const price_max = e.target.max_price.value;
     const rating = e.target.rating.value;
     const origin_country = e.target.Origin.value;
-    const available_quantity = parent(e.target.quantity.value);
+    const available_quantity = parseInt(e.target.quantity.value);
 
     console.log(
+       _id,
       product_name,
       product_images,
       price_min,
@@ -32,7 +34,8 @@ const AddExports = () => {
       rating,
       origin_country,
       available_quantity,
-      email:user.email
+      id:_id,
+      email: user.email,
     };
 
     fetch("http://localhost:3000/myexports", {
@@ -44,15 +47,15 @@ const AddExports = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        e.target.reset()
+        e.target.reset();
         console.log(data);
-        if (data.insertedId) {
-                  Swal.fire({
-                  title: "Import Completed!",
-                  text: "The product has been added to your import records",
-                  icon: "success",
-                });
-                }
+        if (data.result.insertedId) {
+          Swal.fire({
+            title: "Import Completed!",
+            text: "The product has been added to your import records",
+            icon: "success",
+          });
+        }
       });
   };
   return (
@@ -72,6 +75,13 @@ const AddExports = () => {
       <div className="max-w-150 mx-auto bg-primary py-10 rounded-2xl ">
         <form onSubmit={handleExportForm}>
           <fieldset className="fieldset w-6/12 mx-auto text-lg ">
+            <label className="label">Product Id</label>
+            <input
+              type="text"
+              className="input text-primary"
+              placeholder="Enter Product Id"
+              name="id"
+            />
             <label className="label">Product Name</label>
             <input
               type="text"

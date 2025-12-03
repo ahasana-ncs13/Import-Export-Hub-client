@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../ContextApi/AuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
@@ -7,36 +7,39 @@ const MyExports = () => {
   const { user } = use(AuthContext);
 
   const [myexports, setMyExports] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  const exportModalRef = useRef(null);
+  //   console.log(myexports)
 
   useEffect(() => {
-    if(user.email){
-    fetch(`http://localhost:3000/myexports?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setMyExports(data);
-        console.log(data);
-      });
+    if (user.email) {
+      fetch(`http://localhost:3000/myexports?email=${user.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setMyExports(data);
+          console.log(data);
+        });
     }
   }, [user]);
 
   const handleRemoveExports = (id) => {
-    fetch(`http://localhost:3000/myexports/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.deletedCount) {
-          Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
-          }).then((result) => {
-            if (result.isConfirmed) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/myexports/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.result.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
@@ -49,6 +52,81 @@ const MyExports = () => {
               setMyExports(remaining);
             }
           });
+      }
+    });
+  };
+
+  //   const {
+  //     available_quantity,
+  //     origin_country,
+  //     price_max,
+  //     price_min,
+  //     product_images,
+  //     product_name,
+  //     _id,
+  //     rating,
+  //   } = myexports;
+
+  const handleUpdateExports = (product) => {
+    setSelectedProduct(product);
+    exportModalRef.current.showModal();
+  };
+
+  const handleModalForm = (e) => {
+    e.preventDefault();
+    const id = e.target.id.value;
+    const product_name = e.target.name.value;
+    const product_images = e.target.image.value;
+    const price_min = e.target.minprice.value;
+    const price_max = e.target.maxprice.value;
+    const origin_country = e.target.origin.value;
+    const rating = e.target.rating.value;
+    const available_quantity = parseInt(e.target.quantity.value);
+    console.log(
+      available_quantity,
+      origin_country,
+      price_max,
+      price_min,
+      product_images,
+      product_name,
+      id,
+      rating
+    );
+    e.target.reset();
+    exportModalRef.current.close();
+
+    const updateProducts = {
+      available_quantity,
+      origin_country,
+      price_max,
+      price_min,
+      product_images,
+      product_name,
+      id,
+      rating,
+    };
+
+    fetch(`http://localhost:3000/myexports/${selectedProduct._id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateProducts),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setMyExports((prev) =>
+          prev.map((item) =>
+            item._id === selectedProduct._id
+              ? { ...item, ...updateProducts }
+              : item
+          )
+        );
+        console.log(data);
+        if (data.modifiedCount) {
+          data.id === selectedProduct._id;
+          const newProducts = [...selectedProduct, updateProducts];
+          setSelectedProduct(newProducts);
         }
       });
   };
@@ -103,6 +181,7 @@ const MyExports = () => {
                 <td className="text-center">{data.origin_country}</td>
                 <td className="text-center">{data.rating}</td>
                 <td className="text-center">{data.available_quantity}</td>
+
                 <th>
                   <button
                     onClick={() => handleRemoveExports(data._id)}
@@ -111,18 +190,111 @@ const MyExports = () => {
                     Delete
                   </button>
                 </th>
+
                 <th>
-                  <Link
-                    to={`/productdetails/${data._id}`}
+                  <button
+                    onClick={() => handleUpdateExports(data)}
                     className="btn bg-primary p-5 text-secondary border-none font-bold btn-xs"
                   >
                     Update
-                  </Link>
+                  </button>
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
+        <dialog
+          ref={exportModalRef}
+          className="modal modal-bottom sm:modal-middle"
+        >
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Update Exports Products</h3>
+            {selectedProduct && (
+              <form onSubmit={handleModalForm}>
+                <fieldset className="fieldset w-8/12 mx-auto">
+                  <label className="label">Product Id</label>
+                  <input
+                    type="text"
+                    className="input"
+                    defaultValue={selectedProduct._id}
+                    name="id"
+                  />
+                  <label className="label">Product Image</label>
+                  <input
+                    type="url"
+                    className="input"
+                    defaultValue={selectedProduct.product_images}
+                    name="image"
+                  />
+
+                  <label className="label">Product Name</label>
+                  <input
+                    type="text"
+                    className="input"
+                    defaultValue={selectedProduct.product_name}
+                    name="name"
+                  />
+
+                  <label className="label">Min Price</label>
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Enter Min price"
+                    defaultValue={selectedProduct.price_min}
+                    name="minprice"
+                  />
+                  <label className="label">Max Price</label>
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Enter Max price"
+                    name="maxprice"
+                    defaultValue={selectedProduct.price_max}
+                  />
+
+                  <label className="label">Rating</label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="rating"
+                    defaultValue={selectedProduct.rating}
+                  />
+
+                  <label className="label">Origin Country</label>
+                  <input
+                    type="text"
+                    className="input"
+                    name="origin"
+                    defaultValue={selectedProduct.origin_country}
+                  />
+
+                  <label className="label">Available Quantity</label>
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Enter available quantity"
+                    name="quantity"
+                    defaultValue={selectedProduct.available_quantity}
+                  />
+
+                  <div className="modal-action">
+                    <button
+                      className="btn w-full border-none
+                                     bg-primary text-white hover:bg-primary/80"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </fieldset>
+              </form>
+            )}
+            <div className="modal-action">
+              <form method="dialog">
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
     </div>
   );
