@@ -9,58 +9,79 @@ import MyImports from "../Pages/MyImports/MyImports";
 import AddExports from "../Pages/AddExports/AddExports";
 import MyExports from "../Pages/MyExports/MyExports";
 import PrivateRoutes from "./PrivateRoutes";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:Layout,
-    children:[
-        {
-            index:true,
-            path:'/',
-            Component:Home,
-        },
-        {
-            path:'/login',
-            Component:Login
-        },
-        {
-            path:'/register',
-            Component:Register
-        },
-        {
-            path:'/allproducts',
-            Component:AllProducts,
-             loader: () => fetch('https://import-export-hub-server-phi.vercel.app/productinfo'),
-             hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
-        },
-        {
-            path:'/productdetails/:id',
-            element:(<PrivateRoutes>
-            <ProductDetails></ProductDetails>
-            </PrivateRoutes>),
-            loader: ({params})=> fetch(`https://import-export-hub-server-phi.vercel.app/productinfo/${params.id}`),
-            hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
-        },
-        {
-            path:'/myimports',
-            element:(<PrivateRoutes>
+    Component: Layout,
+    children: [
+      {
+        index: true,
+        path: "/",
+        Component: Home,
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+      {
+        path: "/allproducts",
+        Component: AllProducts,
+        loader: () =>
+          fetch("https://import-export-hub-server-phi.vercel.app/productinfo"),
+        hydrateFallbackElement: (
+          <span className="loading loading-bars loading-xl"></span>
+        ),
+      },
+
+      {
+        path:"/aboutus",
+        Component:AboutUs
+      },
+      {
+        path: "/productdetails/:id",
+        element: <ProductDetails></ProductDetails>,
+        loader: ({ params }) =>
+          fetch(
+            `https://import-export-hub-server-phi.vercel.app/productinfo/${params.id}`
+          ),
+        hydrateFallbackElement: (
+          <span className="loading loading-bars loading-xl"></span>
+        ),
+      },
+      {
+        path: "/myimports",
+        element: (
+          <PrivateRoutes>
             <MyImports></MyImports>
-            </PrivateRoutes>),
-        },
-        {
-            path:'/addexports',
-            element:(<PrivateRoutes>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/addexports",
+        element: (
+          <PrivateRoutes>
             <AddExports></AddExports>
-            </PrivateRoutes>)
-        },
-        {
-            path:'/myexports',
-            element:(<PrivateRoutes>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/myexports",
+        element: (
+          <PrivateRoutes>
             <MyExports></MyExports>
-            </PrivateRoutes>),
-            loader:()=> fetch('https://import-export-hub-server-phi.vercel.app/myimports'),
-            hydrateFallbackElement:<span className="loading loading-bars loading-xl"></span>
-        },
-    ]
+          </PrivateRoutes>
+        ),
+        loader: () =>
+          fetch("https://import-export-hub-server-phi.vercel.app/myimports"),
+        hydrateFallbackElement: (
+          <span className="loading loading-bars loading-xl"></span>
+        ),
+      },
+    ],
   },
 ]);

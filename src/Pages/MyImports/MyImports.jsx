@@ -15,7 +15,7 @@ const MyImports = () => {
         .then((data) => setImportedData(data));
     }
   }, [user]);
-  console.log(importedData);
+  // console.log(importedData);
 
   const handleRemoveImports = (id) => {
     Swal.fire({

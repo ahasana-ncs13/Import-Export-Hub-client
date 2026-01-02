@@ -18,7 +18,7 @@ const Register = () => {
     const photourl = e.target.photourl.value;
     const password = e.target.password.value;
 
-    console.log(name, email, photourl, password);
+    // console.log(name, email, photourl, password);
 
     if (!strongPassword.test(password)) {
       setError(
@@ -31,11 +31,11 @@ const Register = () => {
       .then((result) => {
         e.target.reset();
         navigate(location.state||'/');
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => {
         setError(error.message());
-        console.log(error.message());
+        // console.log(error.message());
       });
   };
 
@@ -43,11 +43,11 @@ const Register = () => {
     googleUser()
       .then((result) => {
         navigate(location.state||'/');
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => {
         setError(error.message());
-        console.log(error.message());
+        // console.log(error.message());
       });
   };
 

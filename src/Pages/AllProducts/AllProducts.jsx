@@ -8,7 +8,7 @@ const AllProducts = () => {
   const data = useLoaderData();
   // console.log(data)
   const [search, setSearch] = useState("");
-  console.log(search);
+  // console.log(search);
 
   const filteredProducts = data.filter((product) =>
     product.product_name.toLowerCase().includes(search.toLowerCase())

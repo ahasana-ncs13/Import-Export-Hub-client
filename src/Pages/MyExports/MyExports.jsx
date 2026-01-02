@@ -18,7 +18,7 @@ const MyExports = () => {
         .then((res) => res.json())
         .then((data) => {
           setMyExports(data);
-          console.log(data);
+          // console.log(data);
         });
     }
   }, [user]);
@@ -39,7 +39,7 @@ const MyExports = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.result.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
@@ -83,16 +83,16 @@ const MyExports = () => {
     const origin_country = e.target.origin.value;
     const rating = e.target.rating.value;
     const available_quantity = parseInt(e.target.quantity.value);
-    console.log(
-      available_quantity,
-      origin_country,
-      price_max,
-      price_min,
-      product_images,
-      product_name,
-      id,
-      rating
-    );
+    // console.log(
+    //   available_quantity,
+    //   origin_country,
+    //   price_max,
+    //   price_min,
+    //   product_images,
+    //   product_name,
+    //   id,
+    //   rating
+    // );
     e.target.reset();
     exportModalRef.current.close();
 
@@ -123,7 +123,7 @@ const MyExports = () => {
               : item
           )
         );
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount) {
           Swal.fire({
                       title: "Product Update Completed!",

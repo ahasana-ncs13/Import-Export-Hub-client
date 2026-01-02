@@ -17,16 +17,16 @@ const AddExports = () => {
     const origin_country = e.target.Origin.value;
     const available_quantity = parseInt(e.target.quantity.value);
 
-    console.log(
-       _id,
-      product_name,
-      product_images,
-      price_min,
-      price_max,
-      rating,
-      origin_country,
-      available_quantity
-    );
+    // console.log(
+    //    _id,
+    //   product_name,
+    //   product_images,
+    //   price_min,
+    //   price_max,
+    //   rating,
+    //   origin_country,
+    //   available_quantity
+    // );
     const exportProduct = {
       product_name,
       product_images,
@@ -49,7 +49,7 @@ const AddExports = () => {
       .then((res) => res.json())
       .then((data) => {
         e.target.reset();
-        console.log(data);
+        // console.log(data);
         if (data.result.insertedId) {
           Swal.fire({
             title: "Import Completed!",

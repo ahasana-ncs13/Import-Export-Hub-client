@@ -17,14 +17,14 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(email, password);
+    // console.log(email, password);
     signInUser(email, password)
     .then(result=>{
         navigate(location.state||'/')
-        console.log(result.user); 
+        // console.log(result.user); 
     })
     .catch(error =>{
-        console.log(error.message())
+        // console.log(error.message())
     })
   };
 
@@ -33,11 +33,11 @@ const Login = () => {
     googleUser()
       .then((result) => {
         navigate(location.state||'/')
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => {
         setError(error.message());
-        console.log(error.message());
+        // console.log(error.message());
       });
   };
 

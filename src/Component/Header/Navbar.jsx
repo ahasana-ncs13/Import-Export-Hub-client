@@ -1,52 +1,62 @@
 import React, { use } from "react";
-import { Link, Links } from "react-router";
+import { Link, Links, NavLink } from "react-router";
 import { AuthContext } from "../../ContextApi/AuthContext";
 
 const Navbar = () => {
+  const { user, logoutUser } = use(AuthContext);
 
-  const {user,logoutUser}=use(AuthContext)
-
-  const handleLogout=()=>{
+  const handleLogout = () => {
     logoutUser()
-    .then(()=>{
-
-    })
-    .catch(error=>{
-      console.log(error.message())
-    })
-  }
+      .then(() => {})
+      .catch((error) => {
+        // console.log(error.message())
+      });
+  };
 
   const links = (
     <>
       <li>
-        <Link to="/allproducts" className="mr-2">
+        <NavLink
+          to="/allproducts"
+          className={({ isActive }) => `${isActive && "underline"} mr-2`}
+        >
           All Products
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/myimports" className="mr-2">
+        <NavLink
+          to="/aboutus"
+          className={({ isActive }) => `${isActive && "underline"} mr-2`}
+        >
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/myimports"  className={({ isActive }) => `${isActive && "underline"} mr-2`}>
           My Imports
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/addexports">
-          Add Export 
-        </Link>
+        <NavLink to="/addexports"  className={({ isActive }) => `${isActive && "underline"} mr-2`}>Add Export</NavLink>
       </li>
       <li>
-        <Link to="/myexports" className="mr-2">
+        <NavLink to="/myexports"  className={({ isActive }) => `${isActive && "underline"} mr-2`}>
           My Exports
-        </Link>
+        </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="bg-primary text-white">
+    <div className="bg-primary text-white fixed top-0 left-0 z-50 w-full">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -71,22 +81,39 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/" className="text-xl">
-            <span className="text-lime-300 font-bold">ImportExport</span><sub>Hub</sub>
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill=" white" d="M929 38c-12-5-24-8-36-8l-17 15H124l-17-15c-12 0-24 3-36 8L40 50l31 13c12 5 24 7 37 7l16-15h752l17 15c12 0 24-2 36-7l31-13-31-12Z"></path></svg>
+            <span className="text-lime-300 font-bold">ImportExport</span>
+            <sub>Hub</sub>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100">
+              <path
+                fill=" white"
+                d="M929 38c-12-5-24-8-36-8l-17 15H124l-17-15c-12 0-24 3-36 8L40 50l31 13c12 5 24 7 37 7l16-15h752l17 15c12 0 24-2 36-7l31-13-31-12Z"
+              ></path>
+            </svg>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          {
-            user?
+          {user ? (
             <div className="flex gap-3 object-cover items-center">
-              <img className="bg-white border-2 w-10 h-10 rounded-full " src={user.photoURL} alt="" />
-              <button onClick={handleLogout} className="btn bg-white text-primary w-25 ">LogOut</button>
-            </div>:<Link to='/login' className="btn bg-white text-primary w-25 ">Login</Link>
-          }
-          
+              <img
+                className="bg-white border-2 w-10 h-10 rounded-full "
+                src={user.photoURL}
+                alt=""
+              />
+              <button
+                onClick={handleLogout}
+                className="btn bg-white text-primary w-25 "
+              >
+                LogOut
+              </button>
+            </div>
+          ) : (
+            <Link to="/login" className="btn bg-white text-primary w-25 ">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
