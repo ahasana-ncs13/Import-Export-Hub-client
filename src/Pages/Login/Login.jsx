@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   return (
-    <div className="text-white mt-20 min-h-screen">
+    <div className="text-white mt-20 min-h-screen pt-26">
       <Helmet>
         <title>Login - Import Export Hub</title>
       </Helmet>

@@ -139,7 +139,7 @@ const MyExports = () => {
   };
 
   return (
-    <div className="mb-10">
+    <div className="mb-10 pt-26">
         <Helmet>
         <title>My Exports - Import Export Hub</title>
       </Helmet>

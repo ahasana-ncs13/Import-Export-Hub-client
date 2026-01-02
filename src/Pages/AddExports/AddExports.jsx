@@ -60,7 +60,7 @@ const AddExports = () => {
       });
   };
   return (
-    <div className="w-11/12 mx-auto mb-10 text-white min-h-screen">
+    <div className="w-11/12 mx-auto mb-10 text-white min-h-screen pt-26">
         <Helmet>
         <title>Add Exports - Import Export Hub</title>
       </Helmet>

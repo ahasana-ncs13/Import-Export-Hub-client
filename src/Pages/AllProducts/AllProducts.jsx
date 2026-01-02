@@ -15,7 +15,7 @@ const AllProducts = () => {
   );
 
   return (
-    <div className="w-11/12 mx-auto py-10">
+    <div className="w-11/12 mx-auto py-10 pt-26">
       <Helmet>
         <title>All Products - Import Export Hub</title>
       </Helmet>

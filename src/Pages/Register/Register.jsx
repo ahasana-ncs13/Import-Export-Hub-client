@@ -52,7 +52,7 @@ const Register = () => {
   };
 
   return (
-    <div className="text-white mt-20 min-h-screen">
+    <div className="text-white mt-20 min-h-screen pt-26">
       <Helmet>
         <title>Register- Import Export Hub</title>
       </Helmet>

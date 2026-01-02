@@ -7,7 +7,7 @@ const Layout = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet className='pt-35'></Outlet>
+            <Outlet></Outlet>
             <Footer></Footer>
         </div>
     );
