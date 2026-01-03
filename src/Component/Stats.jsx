@@ -34,8 +34,8 @@ const Stats= () => {
   ];
 
   return (
-    <section className="py-20 ">
-      <div className="w-11/12 mx-auto px-4">
+    <section className="py-20 bg-blue-50 ">
+      <div className="w-11/12 mx-auto px-4 ">
         {/* Header */}
         <div className="text-center mb-14">
           <h2 className="text-3xl text-lime-600 md:text-4xl font-bold">
@@ -53,7 +53,7 @@ const Stats= () => {
           {statsdata.map((stat, index) => (
             <div
               key={index}
-              className="stats shadow-md bg-blue-50"
+              className="stats shadow-md bg-white "
             >
               <div className="stat place-items-center text-center">
                 <div className="text-4xl text-primary mb-3">

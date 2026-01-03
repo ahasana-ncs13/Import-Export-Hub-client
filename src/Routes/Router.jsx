@@ -11,6 +11,8 @@ import MyExports from "../Pages/MyExports/MyExports";
 import PrivateRoutes from "./PrivateRoutes";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import HowItWorksTimeline from "../Pages/HowItWorks/HowItWorksTimeline";
+import BlogsDetails from "../Component/BlogsDetails";
+import Loader from "../Component/Loading/Loader";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,12 +42,17 @@ export const router = createBrowserRouter([
       },
 
       {
-        path:"/aboutus",
-        Component:AboutUs
+        path: "/aboutus",
+        Component: AboutUs,
       },
       {
-        path:"/howitworkstimeline",
-        Component:HowItWorksTimeline
+        path: "/howitworkstimeline",
+        Component: HowItWorksTimeline,
+      },
+      {
+        path: "/blogsdeatails/:id",
+        Component: BlogsDetails,
+        loader: ({params}) => fetch(`http://localhost:3000/blogs/${params.id}`),
       },
       {
         path: "/productdetails/:id",
@@ -54,9 +61,7 @@ export const router = createBrowserRouter([
           fetch(
             `https://import-export-hub-server-phi.vercel.app/productinfo/${params.id}`
           ),
-        hydrateFallbackElement: (
-          <span className="loading loading-bars loading-xl"></span>
-        ),
+        hydrateFallbackElement: Loader,
       },
       {
         path: "/myimports",
@@ -83,9 +88,7 @@ export const router = createBrowserRouter([
         ),
         loader: () =>
           fetch("https://import-export-hub-server-phi.vercel.app/myimports"),
-        hydrateFallbackElement: (
-          <span className="loading loading-bars loading-xl"></span>
-        ),
+        hydrateFallbackElement: Loader,
       },
     ],
   },
