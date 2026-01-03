@@ -5,6 +5,7 @@ import FAQ from "../../Component/FAQ/FAQ";
 import UserFeedback from "../../Component/UserFeedback/UserFeedback";
 import { Helmet } from "react-helmet";
 import IndustriesWeServe from "../../Component/IndustriesWeServe";
+import Stats from "../../Component/stats";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Slider></Slider>
       <LatestProducts></LatestProducts>
       <IndustriesWeServe></IndustriesWeServe>
+      <Stats></Stats>
       <FAQ></FAQ>
       <UserFeedback></UserFeedback>
     </div>
