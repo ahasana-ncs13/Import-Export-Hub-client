@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import IndustriesWeServe from "../../Component/IndustriesWeServe";
 import Stats from "../../Component/stats";
 import Blogs from "../../Component/Blogs";
+import Awards from "../../Component/Awards";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <IndustriesWeServe></IndustriesWeServe>
       <Stats></Stats>
       <Blogs></Blogs>
+      <Awards></Awards>
       <FAQ></FAQ>
       <UserFeedback></UserFeedback>
     </div>
