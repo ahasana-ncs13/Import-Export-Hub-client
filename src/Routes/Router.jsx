@@ -10,6 +10,7 @@ import AddExports from "../Pages/AddExports/AddExports";
 import MyExports from "../Pages/MyExports/MyExports";
 import PrivateRoutes from "./PrivateRoutes";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import HowItWorksTimeline from "../Pages/HowItWorks/HowItWorksTimeline";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path:"/aboutus",
         Component:AboutUs
+      },
+      {
+        path:"/howitworkstimeline",
+        Component:HowItWorksTimeline
       },
       {
         path: "/productdetails/:id",

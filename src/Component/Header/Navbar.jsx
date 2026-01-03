@@ -32,6 +32,14 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink
+          to="/howitworkstimeline"
+          className={({ isActive }) => `${isActive && "underline"} mr-2`}
+        >
+          How It Works
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/myimports"  className={({ isActive }) => `${isActive && "underline"} mr-2`}>
           My Imports
         </NavLink>

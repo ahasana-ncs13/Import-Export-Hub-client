@@ -12,10 +12,10 @@ const LatestProducts = () => {
       });
   }, []);
   return (
-    <div className="py-10 bg-primary">
+    <div className="py-10 bg-blue-50">
       <div className="max-w-200 mx-auto text-center my-10">
-        <h1 className="text-4xl pb-3 font-semibold text-secondary">New Arrivals - Freshly Added Products</h1>
-        <p className="font-medium text-gray-200">
+        <h1 className="text-4xl pb-3 font-bold text-lime-600">New Arrivals - Freshly Added Products</h1>
+        <p className="font-medium text-gray-500">
           Stay updated with our latest high-quality imports and exports. This
           section showcases the 6 most recent items, each highlighting key
           product information such as price, rating, origin, and availability

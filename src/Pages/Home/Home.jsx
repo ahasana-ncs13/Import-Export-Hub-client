@@ -4,6 +4,7 @@ import LatestProducts from "../../Component/LatestProducts/LatestProducts";
 import FAQ from "../../Component/FAQ/FAQ";
 import UserFeedback from "../../Component/UserFeedback/UserFeedback";
 import { Helmet } from "react-helmet";
+import IndustriesWeServe from "../../Component/IndustriesWeServe";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       </Helmet>
       <Slider></Slider>
       <LatestProducts></LatestProducts>
+      <IndustriesWeServe></IndustriesWeServe>
       <FAQ></FAQ>
       <UserFeedback></UserFeedback>
     </div>

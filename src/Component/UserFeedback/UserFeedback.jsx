@@ -28,13 +28,13 @@ const UserFeedback = () => {
 
   return (
     
-    <section className=" bg-primary py-8 px-5">
-        <div className="max-w-5xl mx-auto py-10">
+    <section className="py-8 px-5">
+        <div className="w-11/12 mx-auto py-10">
         <div className="max-w-xl mx-auto pb-10 text-center">
-      <h2 className="text-4xl font-bold  mb-5 text-secondary">
+      <h2 className="text-4xl font-bold  mb-5 text-lime-600">
         What Our Users Say
       </h2>
-      <p className="text-gray-200">
+      <p className="text-gray-500">
         Hear from our users! Discover what our customers have to say about
         Import Export Hub. From seamless importing and exporting to real-time
         updates and secure account management, our platform makes global trade
