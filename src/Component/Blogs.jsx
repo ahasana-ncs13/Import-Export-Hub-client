@@ -15,7 +15,7 @@ const Blogs = () => {
    const blogsToDisplay = showAll ? blogs : blogs.slice(0, 3);
 
   return (
-    <section className="py-20 bg-base-100">
+    <section className="py-20 bg-blue-50">
       <div className="w-11/12 mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-14">

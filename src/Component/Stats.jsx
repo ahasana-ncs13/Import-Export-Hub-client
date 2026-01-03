@@ -66,21 +66,6 @@ const Stats= () => {
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="text-center">
-          <h3 className="text-xl font-semibold mb-4">
-            Ready to Grow Your Global Business?
-          </h3>
-          <div className="flex justify-center gap-4">
-            <button className="btn btn-primary">
-              Get Started
-            </button>
-            <button className="btn btn-outline">
-              Explore Marketplace
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );

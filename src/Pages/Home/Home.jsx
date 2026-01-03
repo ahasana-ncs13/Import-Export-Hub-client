@@ -8,6 +8,7 @@ import IndustriesWeServe from "../../Component/IndustriesWeServe";
 import Stats from "../../Component/stats";
 import Blogs from "../../Component/Blogs";
 import Awards from "../../Component/Awards";
+import CTA from "../../Component/CTA";
 
 const Home = () => {
   return (
@@ -16,11 +17,15 @@ const Home = () => {
         <title>Home - Import Export Hub</title>
       </Helmet>
       <Slider></Slider>
-      <LatestProducts></LatestProducts>
-      <IndustriesWeServe></IndustriesWeServe>
       <Stats></Stats>
-      <Blogs></Blogs>
+      
+      <IndustriesWeServe></IndustriesWeServe>
+      <LatestProducts></LatestProducts>
+
       <Awards></Awards>
+      <Blogs></Blogs>
+
+      <CTA></CTA>
       <FAQ></FAQ>
       <UserFeedback></UserFeedback>
     </div>
