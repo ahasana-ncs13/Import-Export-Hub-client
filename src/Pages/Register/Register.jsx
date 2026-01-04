@@ -44,7 +44,7 @@ const Register = () => {
       };
       console.log(userInfo)
 
-      fetch("http://localhost:3000/user", {
+      fetch("https://import-export-hub-server-phi.vercel.app/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const Register = () => {
     googleUser()
       .then((result) => {
         // navigate(location.state || "/");
-       fetch("http://localhost:3000/user", {
+       fetch("hhttps://import-export-hub-server-phi.vercel.app/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

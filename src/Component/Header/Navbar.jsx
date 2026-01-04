@@ -10,7 +10,7 @@ const Navbar = () => {
   // Fetch additional user data from backend if needed
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/currentuser/${user.email}`)
+      fetch(`https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`)
         .then((res) => res.json())
         .then((data) => setCurrentUser(data))
         .catch(console.error);
@@ -49,30 +49,7 @@ const Navbar = () => {
           How It Works
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/myimports"
-          className={({ isActive }) => `${isActive && "underline"} mr-2`}
-        >
-          My Imports
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/addexports"
-          className={({ isActive }) => `${isActive && "underline"} mr-2`}
-        >
-          Add Export
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/myexports"
-          className={({ isActive }) => `${isActive && "underline"} mr-2`}
-        >
-          My Exports
-        </NavLink>
-      </li>
+      
     </>
   );
 

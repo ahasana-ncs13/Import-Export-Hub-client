@@ -1,7 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
+import { AuthContext } from "../ContextApi/AuthContext";
 
 const CTA = () => {
+  const{user}=use(AuthContext)
   return (
     <section className="py-20 bg-primary text-white">
       <div className="max-w-7xl mx-auto px-4 text-center">
@@ -15,12 +18,14 @@ const CTA = () => {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button className="btn btn-lg btn-outline btn-white flex items-center gap-2 hover:bg-white hover:text-primary transition duration-300">
+        {
+          !user && <Link to="/login" className="btn btn-lg btn-outline btn-white flex items-center gap-2 hover:bg-white hover:text-primary transition duration-300">
             Get Started <FaArrowRight />
-          </button>
-          <button className="btn btn-lg btn-white text-primary flex items-center gap-2 hover:bg-white/90 transition duration-300">
+          </Link>
+        }  
+          <Link to="/allproducts" className="btn btn-lg btn-white text-primary flex items-center gap-2 hover:bg-white/90 transition duration-300">
             Explore Marketplace <FaArrowRight />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

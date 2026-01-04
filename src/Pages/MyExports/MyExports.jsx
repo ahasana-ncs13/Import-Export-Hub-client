@@ -15,7 +15,7 @@ const [currentUser, setCurrentUser] = useState(user);
   useEffect(() => {
 if (user.email) {
     // Fetch current user
-  fetch(`http://localhost:3000/currentuser/${user.email}`)
+  fetch(`https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`)
     .then(res => res.json())
     .then(userData => {
       setCurrentUser(userData);

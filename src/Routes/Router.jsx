@@ -55,7 +55,7 @@ export const router = createBrowserRouter([
       {
         path: "/blogsdeatails/:id",
         Component: BlogsDetails,
-        loader: ({params}) => fetch(`http://localhost:3000/blogs/${params.id}`),
+        loader: ({params}) => fetch(`https://import-export-hub-server-phi.vercel.app/blogs/${params.id}`),
       },
       {
         path: "/productdetails/:id",

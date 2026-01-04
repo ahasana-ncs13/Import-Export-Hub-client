@@ -7,7 +7,7 @@ const Blogs = () => {
    const [showAll, setShowAll] = useState(false);
   // console.log(blogs);
   useEffect(() => {
-    fetch("http://localhost:3000/blogs")
+    fetch("https://import-export-hub-server-phi.vercel.app/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);

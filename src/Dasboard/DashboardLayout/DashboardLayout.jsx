@@ -16,7 +16,7 @@ const DashboardLayout = () => {
   // Fetch additional user info from backend
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/currentuser/${user.email}`)
+      fetch(`https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`)
         .then((res) => res.json())
         .then((data) => setCurrentUser(data))
         .catch(console.error);
