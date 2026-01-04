@@ -32,8 +32,19 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleUser()
       .then((result) => {
-        navigate(location.state||'/')
-        // console.log(result.user);
+        // navigate(location.state || "/");
+       fetch("http://localhost:3000/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result.user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+      navigate(location.state || "/");
+          console.log(data);
+        })
       })
       .catch((error) => {
         setError(error.message());

@@ -13,6 +13,8 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import HowItWorksTimeline from "../Pages/HowItWorks/HowItWorksTimeline";
 import BlogsDetails from "../Component/BlogsDetails";
 import Loader from "../Component/Loading/Loader";
+import DashboardLayout from "../Dasboard/DashboardLayout/DashboardLayout";
+import ImporterDashboard from "../Dasboard/ImporterDasboard/ImporterDasboard";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -63,14 +65,7 @@ export const router = createBrowserRouter([
           ),
         hydrateFallbackElement: <Loader></Loader>,
       },
-      {
-        path: "/myimports",
-        element: (
-          <PrivateRoutes>
-            <MyImports></MyImports>
-          </PrivateRoutes>
-        ),
-      },
+      
       {
         path: "/addexports",
         element: (
@@ -90,6 +85,34 @@ export const router = createBrowserRouter([
           fetch("https://import-export-hub-server-phi.vercel.app/myimports"),
         hydrateFallbackElement: <Loader></Loader>,
       },
+    ],
+  },
+  {
+    path: "/dashboardLayout",
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        index:true,
+        path: "/dashboardLayout/myimports",
+        element: (
+          <PrivateRoutes>
+            <MyImports></MyImports>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboardLayout/importerdashboard",
+        element: (
+          <PrivateRoutes>
+            <ImporterDashboard></ImporterDashboard>
+          </PrivateRoutes>
+        ),
+      },
+      
     ],
   },
 ]);
