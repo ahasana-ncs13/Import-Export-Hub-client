@@ -76,9 +76,9 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-10  bg-primary rounded-xl shadow-lg text-lg">
+    <div className="w-11/12 mx-auto my-10  bg-primary rounded-xl shadow-lg text-lg mt-26">
       <Helmet>
-        <title>{data.product_name}- Import Export Hub</title>
+        <title>{`${data.product_name}- Import Export Hub`}</title>
       </Helmet>
       {/* IMAGE + BASIC INFO */}
       <div className="grid md:grid-cols-1 lg:grid-cols-2 grid-cols-1 gap-8 p-6 ">

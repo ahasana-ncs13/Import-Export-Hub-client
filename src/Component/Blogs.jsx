@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
    const [showAll, setShowAll] = useState(false);
-  console.log(blogs);
+  // console.log(blogs);
   useEffect(() => {
     fetch("http://localhost:3000/blogs")
       .then((res) => res.json())

@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
           fetch(
             `https://import-export-hub-server-phi.vercel.app/productinfo/${params.id}`
           ),
-        hydrateFallbackElement: Loader,
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/myimports",
@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
         ),
         loader: () =>
           fetch("https://import-export-hub-server-phi.vercel.app/myimports"),
-        hydrateFallbackElement: Loader,
+        hydrateFallbackElement: <Loader></Loader>,
       },
     ],
   },

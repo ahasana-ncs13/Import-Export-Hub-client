@@ -77,40 +77,38 @@ const MyImports = () => {
               <th> Price</th>
               <th> Origin Country</th>
               <th> Imported Quantity</th>
-              <th></th>
-              <th></th>
+              <th>Action</th>
+              
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
 
-            {importedData.map((data, index) => (
+            {importedData.map((info, index) => (
               <tr key={index} className="text-lg">
                 <td className="">{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-25 w-25">
-                        <img src={data.product_images} alt="" />
+                        <img src={info.product_images} alt="" />
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>{data.product_name}</td>
-                <td className="text-center">{data.price}</td>
-                <td className="text-center">{data.origin_country}</td>
-                <td className="text-center">{data.Quantity}</td>
+                <td>{info.product_name}</td>
+                <td className="text-center">{info.price}</td>
+                <td className="text-center">{info.origin_country}</td>
+                <td className="text-center">{info.Quantity}</td>
                 <th>
                   <button
-                    onClick={() => handleRemoveImports(data._id)}
-                    className="btn bg-secondary p-5 text-primary font-bold border-none btn-xs"
+                    onClick={() => handleRemoveImports(info._id)}
+                    className="btn bg-secondary p-5 text-primary font-bold border-none btn-xs mr-2"
                   >
                     Remove
                   </button>
-                </th>
-                <th>
                   <Link
-                    to={`/productdetails/${data._id}`}
+                    to={`/productdetails/${info.id}`}
                     className="btn bg-primary p-5 text-secondary border-none font-bold btn-xs"
                   >
                     See Details

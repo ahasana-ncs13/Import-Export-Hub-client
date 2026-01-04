@@ -8,15 +8,8 @@ const AddExports = () => {
 
   const handleExportForm = (e) => {
     e.preventDefault();
-    const _id = e.target.id.value;
-    const product_name = e.target.name.value;
-    const product_images = e.target.image.value;
-    const price_min = e.target.min_price.value;
-    const price_max = e.target.max_price.value;
-    const rating = e.target.rating.value;
-    const origin_country = e.target.Origin.value;
-    const available_quantity = parseInt(e.target.quantity.value);
-
+     const form = e.target;
+  
     // console.log(
     //    _id,
     //   product_name,
@@ -28,16 +21,39 @@ const AddExports = () => {
     //   available_quantity
     // );
     const exportProduct = {
-      product_name,
-      product_images,
-      price_min,
-      price_max,
-      rating,
-      origin_country,
-      available_quantity,
-      id:_id,
-      email: user.email,
-    };
+    email: user.email,
+
+    product_name: form.product_name.value,
+    product_images: form.product_images.value,
+    category: form.category.value,
+
+    price_min: form.price_min.value,
+    price_max: form.price_max.value,
+
+    origin_country: form.origin_country.value,
+    rating: parseFloat(form.rating.value || 0),
+    available_quantity: parseInt(form.available_quantity.value),
+
+    description: form.description.value,
+
+    specifications: {
+      weight: form.weight.value,
+      dimensions: form.dimensions.value,
+      material_type: form.material_type.value,
+    },
+
+    seller_info: {
+      company: form.company.value,
+      verified: form.verified.value === "true",
+    },
+
+    shipping: {
+      delivery_time: form.delivery_time.value,
+      method: form.method.value,
+    },
+
+    created_at: new Date().toISOString(),
+  };
 
     fetch("https://import-export-hub-server-phi.vercel.app/myexports", {
       method: "POST",
@@ -61,7 +77,7 @@ const AddExports = () => {
   };
   return (
     <div className="w-11/12 mx-auto mb-10 text-white min-h-screen pt-26">
-        <Helmet>
+      <Helmet>
         <title>Add Exports - Import Export Hub</title>
       </Helmet>
       <div className="max-w-200 mx-auto text-center my-10">
@@ -76,73 +92,204 @@ const AddExports = () => {
           appear on the All Products page for buyers to explore.
         </p>
       </div>
-      <div className="max-w-150 mx-auto bg-primary py-10 rounded-2xl ">
+      <div className="max-w-6xl mx-auto text-primary bg-blue-50 py-10 rounded-2xl ">
         <form onSubmit={handleExportForm}>
-          <fieldset className="fieldset w-6/12 mx-auto text-lg ">
-            <label className="label">Product Id</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter Product Id"
-              name="id"
-            />
-            <label className="label">Product Name</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter Product Name"
-              name="name"
-            />
+          <fieldset className="fieldset mx-auto text-lg p-8 rounded-xl shadow-lg">
+            <h2 className="text-2xl font-bold text-center mb-6">
+              Add Export Product
+            </h2>
 
-            <label className="label">Product Image</label>
-            <input
-              type="url"
-              className="input text-primary"
-              placeholder="Enter Product Image"
-              name="image"
-            />
+            {/* Basic Info */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Exporter Email</h3>
+                <input
+                  type="email"
+                  className="input input-bordered text-primary w-full"
+                  // name="email"
+                  required
+                  defaultValue={user.email}
+                  readOnly
+                />
+              </div>
 
-            <label className="label">Min Price</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter min price"
-              name="min_price"
-            />
-            <label className="label">Max Price</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter max price"
-              name="max_price"
-            />
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Product Name</h3>{" "}
+                <input
+                  type="text"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="Enter Product Name"
+                  name="product_name"
+                  required
+                />
+              </div>
+            </div>
 
-            <label className="label">Rating</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter rating"
-              name="rating"
-            />
+            {/* Image & Category */}
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <h3 className="text-xl font-semibold mt-6">
+                  Product Image URL
+                </h3>
+                <input
+                  type="url"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="Enter Product Image URL"
+                  name="product_images"
+                  required
+                />
+              </div>
 
-            <label className="label">Origin Country</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter Origin Country"
-              name="Origin"
-            />
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Category</h3>{" "}
+                <input
+                  type="text"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="Food & Agriculture"
+                  name="category"
+                  required
+                />
+              </div>
+            </div>
 
-            <label className="label">Quantity</label>
-            <input
-              type="text"
-              className="input text-primary"
-              placeholder="Enter available quantity"
-              name="quantity"
-            />
+            {/* Pricing */}
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Minimum Price</h3>{" "}
+                <input
+                  type="text"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="25 USD per kg"
+                  name="price_min"
+                  required
+                />
+              </div>
 
-            <button className="btn mt-3 w-full border-none bg-secondary text-primary">
-              Add Export
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Maximum Price</h3>{" "}
+                <input
+                  type="text"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="32 USD per kg"
+                  name="price_max"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Origin & Rating */}
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Origin Country</h3>
+                <input
+                  type="text"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="India"
+                  name="origin_country"
+                  required
+                />
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mt-6">Rating</h3>
+                <input
+                  type="number"
+                  step="0.1"
+                  max="5"
+                  className="input input-bordered text-primary w-full"
+                  placeholder="4.7"
+                  name="rating"
+                />
+              </div>
+            </div>
+
+            {/* Quantity */}
+            <h3 className="text-xl font-semibold mt-6">Available Quantity</h3>
+            <div className="mt-4">
+              <input
+                type="number"
+                className="input input-bordered text-primary w-full"
+                placeholder="4972"
+                name="available_quantity"
+                required
+              />
+            </div>
+
+            {/* Description */}
+            <h3 className="text-xl font-semibold mt-6">Product Description</h3>
+            <div className="mt-4">
+              <textarea
+                className="textarea textarea-bordered text-primary w-full"
+                placeholder="Write detailed product description..."
+                name="description"
+                rows={4}
+                required
+              ></textarea>
+            </div>
+
+            {/* Specifications */}
+            <h3 className="text-xl font-semibold mt-6">Specifications</h3>
+            <div className="grid md:grid-cols-3 gap-4 mt-2">
+              <input
+                type="text"
+                className="input input-bordered text-primary"
+                placeholder="Weight (e.g. 1kg bag)"
+                name="weight"
+              />
+              <input
+                type="text"
+                className="input input-bordered text-primary"
+                placeholder="Dimensions (20x10x5 cm)"
+                name="dimensions"
+              />
+              <input
+                type="text"
+                className="input input-bordered text-primary"
+                placeholder="Material Type (Food Grain)"
+                name="material_type"
+              />
+            </div>
+
+            {/* Seller Info */}
+            <h3 className="text-xl font-semibold mt-6">Seller Information</h3>
+            <div className="grid md:grid-cols-2 gap-4 mt-2">
+              <input
+                type="text"
+                className="input input-bordered text-primary"
+                placeholder="Company Name"
+                name="company"
+                required
+              />
+
+              <select
+                className="select select-bordered text-primary"
+                name="verified"
+              >
+                <option value="true">Verified Seller</option>
+                <option value="false">Not Verified</option>
+              </select>
+            </div>
+
+            {/* Shipping */}
+            <h3 className="text-xl font-semibold mt-6">Shipping Details</h3>
+            <div className="grid md:grid-cols-2 gap-4 mt-2">
+              <input
+                type="text"
+                className="input input-bordered text-primary"
+                placeholder="Delivery Time (15–20 days)"
+                name="delivery_time"
+              />
+              <input
+                type="text"
+                className="input input-bordered text-primary"
+                placeholder="Shipping Method (Sea)"
+                name="method"
+              />
+            </div>
+
+            {/* Submit */}
+            <button className="btn mt-8 w-full bg-secondary text-primary border-none">
+              Add Export Product
             </button>
           </fieldset>
         </form>

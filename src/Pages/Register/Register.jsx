@@ -4,10 +4,10 @@ import { AuthContext } from "../../ContextApi/AuthContext";
 import { Helmet } from "react-helmet";
 
 const Register = () => {
-  const { createUser, googleUser } = use(AuthContext);
+  const { createUser, googleUser ,UpdateUserProfile} = use(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   const strongPassword = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
 
@@ -15,8 +15,9 @@ const Register = () => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
-    const photourl = e.target.photourl.value;
+    const photoURL = e.target.photourl.value;
     const password = e.target.password.value;
+    const role = e.target.role.value;
 
     // console.log(name, email, photourl, password);
 
@@ -27,23 +28,58 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        e.target.reset();
-        navigate(location.state||'/');
-        // console.log(result.user);
-      })
-      .catch((error) => {
-        setError(error.message());
-        // console.log(error.message());
-      });
-  };
+    createUser(email, password).then((result) => {
+          const profile = {
+            displayName: name,
+            photoURL: photoURL,
+          };
 
+          UpdateUserProfile(profile);
+
+      const userInfo = {
+        name,
+        email,
+        photoURL,
+        role,
+      };
+      console.log(userInfo)
+
+      fetch("http://localhost:3000/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          e.target.reset();
+      navigate(location.state || "/");
+          console.log(data);
+        })
+
+        .catch((error) => {
+          setError(error.message());
+          // console.log(error.message());
+        });
+    });
+  };
   const handleGoogleSignUp = () => {
     googleUser()
       .then((result) => {
-        navigate(location.state||'/');
-        // console.log(result.user);
+        // navigate(location.state || "/");
+       fetch("http://localhost:3000/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result.user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+      navigate(location.state || "/");
+          console.log(data);
+        })
       })
       .catch((error) => {
         setError(error.message());
@@ -94,6 +130,18 @@ const Register = () => {
               name="password"
               required
             />
+
+            {/* role */}
+            <label className="label">Role</label>
+            <select
+              className="select select-bordered w-full text-primary"
+              name="role"
+              required
+            >
+              <option value="user">Importer</option>
+              <option value="staff">Exporter</option>
+            </select>
+
             <p className="text-red-500 font-semibold">{error}</p>
 
             <button className="btn bg-primary text-white mt-4">Register</button>

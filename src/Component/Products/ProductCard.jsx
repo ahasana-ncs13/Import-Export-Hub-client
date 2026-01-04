@@ -1,4 +1,8 @@
 import React from "react";
+import { BsCurrencyDollar } from "react-icons/bs";
+import { FaStar } from "react-icons/fa";
+import { IoLocationSharp } from "react-icons/io5";
+import { MdLocalGroceryStore } from "react-icons/md";
 import { Link } from "react-router";
 
 const ProductCard = ({ product }) => {
@@ -12,44 +16,57 @@ const ProductCard = ({ product }) => {
     available_quantity,
     _id,
   } = product;
-  // console.log(product);
+
   return (
-    <div>
-      <div className="rounded-xl shadow-md p-4 bg-white text-lg ">
-        {/* Product Image */}
+    <div className="w-full">
+      {/* Card */}
+      <div className="bg-white rounded-xl shadow-md p-4 h-[430px] flex flex-col">
+        
+        {/* Image */}
         <img
           src={product_images}
           alt={product_name}
-          className="w-full h-90 object-cover rounded-lg"
+          className="w-full h-[220px] object-cover rounded-lg"
         />
 
-        {/* Product Info */}
-        <h2 className="text-2xl font-bold text-center text-primary my-5">{product_name}</h2>
+        {/* Content */}
+        <div className="flex-1 flex flex-col">
+          <h2 className="text-xl font-bold text-center text-primary my-4 line-clamp-2">
+            {product_name}
+          </h2>
 
-        <p className="text-gray-600 mt-1">
-          <span className="font-bold text-primary">Price:</span> {price_min} –{" "}
-          {price_max}
-        </p>
+          <p className="text-gray-600 flex items-center gap-2">
+            <span className="text-primary">
+              <BsCurrencyDollar />
+            </span>
+            {price_min} – {price_max}
+          </p>
 
-        <p className="text-gray-600">
-          <span className="font-bold text-primary">Origin:</span> {origin_country}
-        </p>
+          <div className="flex justify-between items-center mt-2 text-sm">
+            <p className="flex items-center gap-1 text-gray-600">
+              <IoLocationSharp className="text-primary" />
+              {origin_country}
+            </p>
 
-        <p className="text-gray-600">
-          <span className="font-bold text-primary">Rating:</span> ⭐ {rating}
-        </p>
+            <p className="flex items-center gap-1 text-gray-600">
+              <FaStar className="text-primary" />
+              {rating}
+            </p>
 
-        <p className="text-gray-600">
-          <span className="font-bold text-primary">Available:</span> {available_quantity}
-        </p>
+            <p className="flex items-center gap-1 text-gray-600">
+              <MdLocalGroceryStore className="text-primary" />
+              {available_quantity}
+            </p>
+          </div>
 
-        {/* See Details Button */}
-        <Link
-          to={`/productdetails/${_id}`}
-          className="mt-4 block text-center bg-secondary py-2 rounded-lg text-primary font-bold hover:bg-lime-600 transition hover:text-white"
-        >
-          See Details
-        </Link>
+          {/* Button pushed to bottom */}
+          <Link
+            to={`/productdetails/${_id}`}
+            className="mt-auto block text-center bg-secondary py-2 rounded-lg text-primary font-bold hover:bg-lime-600 hover:text-white transition"
+          >
+            See Details
+          </Link>
+        </div>
       </div>
     </div>
   );

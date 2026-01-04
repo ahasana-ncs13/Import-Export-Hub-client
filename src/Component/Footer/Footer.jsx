@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from 'react-router';
 
 const  Footer =()=> {
   return (
@@ -19,11 +20,11 @@ const  Footer =()=> {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li>About Us</li>
-            <li>How It Works</li>
-            <li>My Imports</li>
-            <li>Browse Products</li>
-            <li>Support</li>
+            <li><Link to="/aboutus">About Us</Link></li>
+            <li><Link to="/howitworkstimeline">How It Works</Link></li>
+            <li><Link to="/myimports">My Imports</Link></li>
+            <li><Link to="/allproducts">Browse Products</Link></li>
+            <li><Link to="/howitworkstimeline">Support</Link></li>
           </ul>
         </div>
 

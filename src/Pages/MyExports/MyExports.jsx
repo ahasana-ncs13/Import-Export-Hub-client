@@ -6,22 +6,31 @@ import { Helmet } from "react-helmet";
 
 const MyExports = () => {
   const { user } = use(AuthContext);
-
+const [currentUser, setCurrentUser] = useState(user);
   const [myexports, setMyExports] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState([]);
   const exportModalRef = useRef(null);
-  //   console.log(myexports)
+
 
   useEffect(() => {
-    if (user.email) {
-      fetch(`https://import-export-hub-server-phi.vercel.app/myexports?email=${user.email}`)
+if (user.email) {
+    // Fetch current user
+  fetch(`http://localhost:3000/currentuser/${user.email}`)
+    .then(res => res.json())
+    .then(userData => {
+      setCurrentUser(userData);
+    })
+}
+    if (user.email===currentUser.email) {
+      fetch(`https://import-export-hub-server-phi.vercel.app/myexports?email=${currentUser.email}`)
         .then((res) => res.json())
         .then((data) => {
           setMyExports(data);
           // console.log(data);
         });
     }
-  }, [user]);
+  
+  }, [user,currentUser]);
 
   const handleRemoveExports = (id) => {
     Swal.fire({
