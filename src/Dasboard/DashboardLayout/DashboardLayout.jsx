@@ -114,7 +114,7 @@ const DashboardLayout = () => {
               </ul>
             )}
 
-            {currentUser?.role === "Admin" && (
+            {currentUser?.role === "Exporter" && (
               <ul className="menu w-full grow">
                 <li>
                   <Link to="/" className="tooltip" data-tip="Home">
@@ -123,7 +123,7 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <Link
-                    to="/dashboardLayout/adminDashboard"
+                    to="/dashboardLayout/exporterdashboard"
                     className="tooltip"
                     data-tip="Admin Dashboard"
                   >
@@ -136,16 +136,16 @@ const DashboardLayout = () => {
                     className="tooltip"
                     data-tip="My Issues"
                   >
-                    <FaClipboardList /> <span> My Imports</span>
+                    <FaClipboardList /> <span> My Exports</span>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/dashboardLayout/reportIssue"
+                    to="/dashboardLayout/addexports"
                     className="tooltip"
                     data-tip="Report Issue"
                   >
-                    <MdAssignmentAdd /> <span>Report Issue</span>
+                    <MdAssignmentAdd /> <span>Add Export Products</span>
                   </Link>
                 </li>
               </ul>

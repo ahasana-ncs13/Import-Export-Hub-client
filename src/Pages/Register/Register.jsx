@@ -138,8 +138,8 @@ const Register = () => {
               name="role"
               required
             >
-              <option value="user">Importer</option>
-              <option value="staff">Exporter</option>
+              <option value="Importer">Importer</option>
+              <option value="Exporter">Exporter</option>
             </select>
 
             <p className="text-red-500 font-semibold">{error}</p>
