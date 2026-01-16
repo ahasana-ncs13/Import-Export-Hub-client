@@ -1,8 +1,7 @@
 import React from "react";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const ExporterDashboard = () => {
-  // Dummy data for exports
   const stats = {
     totalExports: 95,
     pendingExports: 25,
@@ -45,22 +44,24 @@ const ExporterDashboard = () => {
       {/* ---------- Pie Chart ---------- */}
       <div className="max-w-2xl mx-auto bg-base-100 shadow rounded-xl p-4">
         <h2 className="text-lg font-semibold mb-4 text-center">Export Status</h2>
-        <PieChart width={400} height={300}>
-          <Pie
-            data={chartData}
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-            dataKey="value"
-            label
-          >
-            {chartData.map((_, index) => (
-              <Cell key={index} fill={COLORS[index]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={chartData}
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              dataKey="value"
+              label
+            >
+              {chartData.map((_, index) => (
+                <Cell key={index} fill={COLORS[index]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

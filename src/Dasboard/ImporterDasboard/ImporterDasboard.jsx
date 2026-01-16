@@ -1,8 +1,7 @@
 import React from "react";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const ImporterDashboard = () => {
-  // Dummy data for importers
   const stats = {
     totalImports: 120,
     pendingImports: 30,
@@ -15,7 +14,7 @@ const ImporterDashboard = () => {
     { name: "Completed Imports", value: stats.completedImports },
   ];
 
-  const COLORS = ["#FACC15", "#22C55E"]; // Yellow = Pending, Green = Completed
+  const COLORS = ["#FACC15", "#22C55E"];
 
   return (
     <div className="space-y-6">
@@ -45,22 +44,24 @@ const ImporterDashboard = () => {
       {/* ---------- Pie Chart ---------- */}
       <div className="max-w-2xl mx-auto bg-base-100 shadow rounded-xl p-4">
         <h2 className="text-lg font-semibold mb-4 text-center">Import Status</h2>
-        <PieChart width={400} height={300}>
-          <Pie
-            data={chartData}
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-            dataKey="value"
-            label
-          >
-            {chartData.map((_, index) => (
-              <Cell key={index} fill={COLORS[index]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={chartData}
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              dataKey="value"
+              label
+            >
+              {chartData.map((_, index) => (
+                <Cell key={index} fill={COLORS[index]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
