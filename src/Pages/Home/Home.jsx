@@ -9,6 +9,8 @@ import Stats from "../../Component/stats";
 import Blogs from "../../Component/Blogs";
 import Awards from "../../Component/Awards";
 import CTA from "../../Component/CTA";
+import AuthorityPartners from "../../Component/AuthorityPartners";
+import WhyThisPlatformMatters from "../../Component/WhyThisPlatformMatters";
 
 const Home = () => {
   return (
@@ -18,13 +20,12 @@ const Home = () => {
       </Helmet>
       <Slider></Slider>
       <Stats></Stats>
-      
       <IndustriesWeServe></IndustriesWeServe>
+      <WhyThisPlatformMatters></WhyThisPlatformMatters>
       <LatestProducts></LatestProducts>
-
       <Awards></Awards>
       <Blogs></Blogs>
-
+      <AuthorityPartners></AuthorityPartners>
       <CTA></CTA>
       <FAQ></FAQ>
       <UserFeedback></UserFeedback>
