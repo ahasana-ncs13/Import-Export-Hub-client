@@ -146,7 +146,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-primary text-white shadow-sm lg:px-20 fixed top-0 left-0 w-full z-50">
+    <div className="navbar bg-primary text-primary shadow-sm lg:px-20 fixed top-0 left-0 w-full z-50">
       <div className="navbar-start">
         {/* Hamburger menu for mobile */}
         <div className="dropdown dropdown-start lg:hidden">
