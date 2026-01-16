@@ -16,6 +16,7 @@ import Loader from "../Component/Loading/Loader";
 import DashboardLayout from "../Dasboard/DashboardLayout/DashboardLayout";
 import ImporterDashboard from "../Dasboard/ImporterDasboard/ImporterDasboard";
 import ExporterDashboard from "../Dasboard/ExporterDashboard/ExporterDashboard";
+import PricingQuote from "../Pages/PricingQuote/PricingQuote";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/howitworkstimeline",
         Component: HowItWorksTimeline,
+      },
+      {
+        path: "/pricingquote",
+        Component: PricingQuote,
       },
       {
         path: "/blogsdeatails/:id",

@@ -10,7 +10,9 @@ const Navbar = () => {
   // Fetch additional user data from backend if needed
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`)
+      fetch(
+        `https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => setCurrentUser(data))
         .catch(console.error);
@@ -23,33 +25,61 @@ const Navbar = () => {
       .catch((err) => console.log(err.message));
   };
 
-   const links = (
+  const links = (
     <>
+      {/* Common links */}
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) => `${isActive ? "underline" : ""} mr-2`}
+        >
+          Home
+        </NavLink>
+      </li>
+
       <li>
         <NavLink
           to="/allproducts"
-          className={({ isActive }) => `${isActive && "underline"} mr-2`}
+          className={({ isActive }) => `${isActive ? "underline" : ""} mr-2`}
         >
           All Products
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/aboutus"
-          className={({ isActive }) => `${isActive && "underline"} mr-2`}
+          className={({ isActive }) => `${isActive ? "underline" : ""} mr-2`}
         >
           About Us
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/howitworkstimeline"
-          className={({ isActive }) => `${isActive && "underline"} mr-2`}
-        >
-          How It Works
-        </NavLink>
-      </li>
-      
+
+      {/* Auth-only links */}
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/howitworkstimeline"
+              className={({ isActive }) =>
+                `${isActive ? "underline" : ""} mr-2`
+              }
+            >
+              How It Works
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/pricingquote"
+              className={({ isActive }) =>
+                `${isActive ? "underline" : ""} mr-2`
+              }
+            >
+              Pricing Quote
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
