@@ -4,18 +4,18 @@ import { Link } from "react-router";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-   const [showAll, setShowAll] = useState(false);
-  // console.log(blogs);
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     fetch("https://import-export-hub-server-phi.vercel.app/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);
 
-   const blogsToDisplay = showAll ? blogs : blogs.slice(0, 3);
+  const blogsToDisplay = showAll ? blogs : blogs.slice(0, 3);
 
   return (
-    <section className="py-20 bg-blue-50">
+    <section className="py-20 bg-base-200 transition-colors duration-300">
       <div className="w-11/12 mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-14">
@@ -33,18 +33,18 @@ const Blogs = () => {
           {blogsToDisplay.map((blog) => (
             <div
               key={blog.id}
-              className="card bg-base-200 shadow-md"
+              className="card bg-base-100 shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               <figure>
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="h-48 w-full object-cover"
+                  className="h-48 w-full object-cover rounded-t-xl"
                 />
               </figure>
 
               <div className="card-body">
-                <h3 className="card-title text-lg leading-snug">
+                <h3 className="card-title text-lg leading-snug text-base-content">
                   {blog.title}
                 </h3>
 
@@ -74,11 +74,11 @@ const Blogs = () => {
           ))}
         </div>
 
-        {/* View All */}
-         {blogs.length > 3 && (
+        {/* View All / Show Less */}
+        {blogs.length > 3 && (
           <div className="text-center">
             <button
-              className="btn  btn-primary"
+              className="btn btn-primary"
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? "Show Less" : "View All Blogs"}

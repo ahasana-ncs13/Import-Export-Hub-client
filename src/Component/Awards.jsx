@@ -38,11 +38,13 @@ const Awards = () => {
   ];
 
   return (
-    <section className="py-20 bg-base-100">
+    <section className="py-20 bg-base-200 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold">Awards & Recognition</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary">
+            Awards & Recognition
+          </h2>
           <p className="mt-4 text-base-content/70 max-w-3xl mx-auto">
             Our achievements and certifications showcase our commitment to excellence in international trade.
           </p>
@@ -53,22 +55,22 @@ const Awards = () => {
           {awards.map((award) => (
             <div
               key={award.id}
-              className="bg-white border-4 border-yellow-300 rounded-xl shadow-lg p-8 relative hover:scale-105 transition-transform duration-300"
+              className="bg-base-100 border-4 border-primary/30 rounded-xl shadow-lg p-8 relative hover:scale-105 transition-transform duration-300"
             >
               {/* Ribbon/Seal */}
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-4 shadow-md">
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-base-100 rounded-full p-4 shadow-md">
                 {award.icon}
               </div>
 
               {/* Certificate Content */}
               <div className="mt-12 text-center">
-                <h3 className="text-2xl font-bold mb-2">{award.title}</h3>
-                <p className="text-base text-gray-700 mb-6">{award.desc}</p>
+                <h3 className="text-2xl font-bold mb-2 text-base-content">{award.title}</h3>
+                <p className="text-base text-base-content/70 mb-6">{award.desc}</p>
 
                 {/* Date & Signature */}
-                <div className="flex justify-between items-center mt-8">
-                  <span className="text-sm text-gray-500">Date: {award.date}</span>
-                  <span className="text-sm font-semibold">{award.signature}</span>
+                <div className="flex justify-between items-center mt-8 text-sm text-base-content/70">
+                  <span>Date: {award.date}</span>
+                  <span className="font-semibold">{award.signature}</span>
                 </div>
               </div>
             </div>

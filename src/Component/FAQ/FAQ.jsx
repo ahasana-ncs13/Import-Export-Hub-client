@@ -31,24 +31,25 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="py-15 bg-blue-50">
+    <section className="py-16 bg-base-200 transition-colors duration-300">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-center mb-2 text-primary">
+        <h2 className="text-3xl font-bold mb-2 text-primary">
           Frequently Asked Questions
         </h2>
-        <p className="text-gray-600">
+        <p className="text-base-content/70">
           Find quick answers to the most common questions about the Import
-          Export Hub platform.This section helps users understand how product
+          Export Hub platform. This section helps users understand how product
           browsing, exporting, importing, and account security work across the
           system.
         </p>
       </div>
-      <div className="max-w-5xl mx-auto px-4 py-10">
+
+      <div className="max-w-5xl mx-auto px-4 py-10 space-y-4">
         {faqData.map((item, index) => (
           <FAQItem key={index} question={item.question} answer={item.answer} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

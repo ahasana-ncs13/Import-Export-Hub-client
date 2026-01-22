@@ -10,7 +10,9 @@ const MyImports = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://import-export-hub-server-phi.vercel.app/myimports?email=${user.email}`)
+      fetch(
+        `https://import-export-hub-server-phi.vercel.app/myimports?email=${user.email}`,
+      )
         .then((res) => res.json())
         .then((data) => setImportedData(data));
     }
@@ -28,9 +30,12 @@ const MyImports = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://import-export-hub-server-phi.vercel.app/myimports/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://import-export-hub-server-phi.vercel.app/myimports/${id}`,
+          {
+            method: "DELETE",
+          },
+        )
           .then((res) => res.json())
           .then((data) => {
             // console.log(data);
@@ -42,7 +47,7 @@ const MyImports = () => {
               });
 
               const remaining = importedData.filter(
-                (imports) => imports._id !== id
+                (imports) => imports._id !== id,
               );
               setImportedData(remaining);
             }
@@ -69,7 +74,7 @@ const MyImports = () => {
       <div className="overflow-x-auto w-11/12 mx-auto mt-20 bg-white">
         <table className="table ">
           {/* head */}
-          <thead className="bg-primary text-secondary">
+          <thead className="bg-primary text-white">
             <tr className="text-xl">
               <th>No.of Serials</th>
               <th>Product Image</th>
@@ -78,15 +83,15 @@ const MyImports = () => {
               <th> Origin Country</th>
               <th> Imported Quantity</th>
               <th>Action</th>
-              
             </tr>
           </thead>
-          <tbody>
-            {/* row 1 */}
-
+          <tbody className="text-gray-800 dark:text-gray-200">
             {importedData.map((info, index) => (
-              <tr key={index} className="text-lg">
-                <td className="">{index + 1}</td>
+              <tr
+                key={index}
+                className="text-lg odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
+              >
+                <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -100,16 +105,16 @@ const MyImports = () => {
                 <td className="text-center">{info.price}</td>
                 <td className="text-center">{info.origin_country}</td>
                 <td className="text-center">{info.Quantity}</td>
-                <th>
+                <th className="flex gap-2">
                   <button
                     onClick={() => handleRemoveImports(info._id)}
-                    className="btn bg-secondary p-5 text-primary font-bold border-none btn-xs mr-2"
+                    className="btn bg-secondary p-5 text-white font-bold border-none btn-xs hover:bg-secondary/80 transition-colors duration-300"
                   >
                     Remove
                   </button>
                   <Link
                     to={`/productdetails/${info.id}`}
-                    className="btn bg-primary p-5 text-secondary border-none font-bold btn-xs"
+                    className="btn bg-primary p-5 text-white border-none font-bold btn-xs hover:bg-primary/80 transition-colors duration-300"
                   >
                     See Details
                   </Link>

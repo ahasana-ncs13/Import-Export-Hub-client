@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 // import Logo from "../Logo"; // Your Logo component
 import { AuthContext } from "../../ContextApi/AuthContext";
+import ThemeController from "./ThemeController";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     if (user?.email) {
       fetch(
-        `https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`
+        `https://import-export-hub-server-phi.vercel.app/currentuser/${user.email}`,
       )
         .then((res) => res.json())
         .then((data) => setCurrentUser(data))
@@ -146,7 +147,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-primary text-primary shadow-sm lg:px-20 fixed top-0 left-0 w-full z-50">
+    <div className="navbar bg-primary text-white  shadow-sm lg:px-20 fixed top-0 left-0 w-full z-50">
       <div className="navbar-start">
         {/* Hamburger menu for mobile */}
         <div className="dropdown dropdown-start lg:hidden">
@@ -199,6 +200,10 @@ const Navbar = () => {
             Login
           </Link>
         )}
+      </div>
+
+      <div className="ml-5 ">
+        <ThemeController></ThemeController>
       </div>
     </div>
   );

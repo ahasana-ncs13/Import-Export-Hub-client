@@ -27,29 +27,29 @@ const UserFeedback = () => {
   ];
 
   return (
-    
-    <section className="py-8 px-5">
-        <div className="w-11/12 mx-auto py-10">
+    <section className="py-12 px-5 bg-base-200 transition-colors duration-300">
+      <div className="w-11/12 mx-auto py-10">
+        {/* Header */}
         <div className="max-w-xl mx-auto pb-10 text-center">
-      <h2 className="text-4xl font-bold  mb-5 text-lime-600">
-        What Our Users Say
-      </h2>
-      <p className="text-gray-500">
-        Hear from our users! Discover what our customers have to say about
-        Import Export Hub. From seamless importing and exporting to real-time
-        updates and secure account management, our platform makes global trade
-        effortless.
-      </p>
-      </div>
+          <h2 className="text-4xl font-bold mb-5 text-primary">
+            What Our Users Say
+          </h2>
+          <p className="text-base-content/70">
+            Hear from our users! Discover what our customers have to say about
+            Import Export Hub. From seamless importing and exporting to real-time
+            updates and secure account management, our platform makes global trade
+            effortless.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {feedbackData.map((user, index) => (
-          <UserFeedbackCard key={index} user={user} />
-        ))}
-      </div>
+        {/* Feedback Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {feedbackData.map((user, index) => (
+            <UserFeedbackCard key={index} user={user} />
+          ))}
+        </div>
       </div>
     </section>
-
   );
 };
 

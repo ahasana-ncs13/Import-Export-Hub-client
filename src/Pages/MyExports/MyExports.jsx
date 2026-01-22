@@ -148,172 +148,113 @@ if (user.email) {
   };
 
   return (
-    <div className="mb-10 pt-26">
+    <div className="mb-10 pt-26  text-base-content">
         <Helmet>
         <title>My Exports - Import Export Hub</title>
       </Helmet>
-      <div className="text-center max-w-160 mx-auto my-10">
-        <h1 className="text-3xl text-primary font-semibold mb-3">
-          My Export Orders
-        </h1>
-        <p className="text-gray-500">
-          The My Export Orders page displays all the products you have exported
-          through the platform. Here you can easily view order details, pricing,
-          quantities, export status, and product information in one place.
-        </p>
-      </div>
+      <div className="text-center max-w-3xl mx-auto my-10">
+    <h1 className="text-3xl font-semibold text-primary mb-3">
+      My Export Orders
+    </h1>
+    <p className="opacity-70">
+      View and manage all your exported products in one place including pricing,
+      quantity, and origin details.
+    </p>
+  </div>
+
       <div className="overflow-x-auto w-11/12 mx-auto mt-20 bg-white">
-        <table className="table ">
-          {/* head */}
-          <thead className="bg-primary text-secondary">
-            <tr className="text-xl">
-              <th>No.</th>
-              <th>Product Image</th>
-              <th>Product Name</th>
-              <th>MinPrice</th>
-              <th>MaxPrice</th>
-              <th>Origin Country</th>
-              <th>Rating</th>
-              <th>Available Quantity</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
+        <div className="overflow-x-auto w-11/12 mx-auto my-16 bg-base-100 rounded-xl shadow">
+  <table className="table table-zebra">
+    <thead className="bg-primary text-primary-content">
+      <tr className="text-sm md:text-base">
+        <th>#</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th className="text-center">Min</th>
+        <th className="text-center">Max</th>
+        <th className="text-center">Origin</th>
+        <th className="text-center">Rating</th>
+        <th className="text-center">Qty</th>
+        <th className="text-center">Delete</th>
+        <th className="text-center">Update</th>
+      </tr>
+    </thead>
 
-            {myexports.map((data, index) => (
-              <tr key={index} className="text-lg">
-                <td className="">{index + 1}</td>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-25 w-25">
-                        <img src={data.product_images} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>{data.product_name}</td>
-                <td className="text-center">{data.price_min}</td>
-                <td className="text-center">{data.price_max}</td>
-                <td className="text-center">{data.origin_country}</td>
-                <td className="text-center">{data.rating}</td>
-                <td className="text-center">{data.available_quantity}</td>
-
-                <th>
-                  <button
-                    onClick={() => handleRemoveExports(data._id)}
-                    className="btn bg-secondary p-5 text-primary font-bold border-none btn-xs"
-                  >
-                    Delete
-                  </button>
-                </th>
-
-                <th>
-                  <button
-                    onClick={() => handleUpdateExports(data)}
-                    className="btn bg-primary p-5 text-secondary border-none font-bold btn-xs"
-                  >
-                    Update
-                  </button>
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <dialog
-          ref={exportModalRef}
-          className="modal modal-bottom sm:modal-middle"
+    <tbody>
+      {myexports.map((data, index) => (
+        <tr
+          key={data._id}
+          className="hover:bg-base-200 transition"
         >
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Update Exports Products</h3>
-            {selectedProduct && (
-              <form onSubmit={handleModalForm}>
-                <fieldset className="fieldset w-8/12 mx-auto">
-                  <label className="label">Product Id</label>
-                  <input
-                    type="text"
-                    className="input"
-                    defaultValue={selectedProduct._id}
-                    name="id"
-                  />
-                  <label className="label">Product Image</label>
-                  <input
-                    type="url"
-                    className="input"
-                    defaultValue={selectedProduct.product_images}
-                    name="image"
-                  />
+          <td>{index + 1}</td>
 
-                  <label className="label">Product Name</label>
-                  <input
-                    type="text"
-                    className="input"
-                    defaultValue={selectedProduct.product_name}
-                    name="name"
-                  />
-
-                  <label className="label">Min Price</label>
-                  <input
-                    type="text"
-                    className="input"
-                    placeholder="Enter Min price"
-                    defaultValue={selectedProduct.price_min}
-                    name="minprice"
-                  />
-                  <label className="label">Max Price</label>
-                  <input
-                    type="text"
-                    className="input"
-                    placeholder="Enter Max price"
-                    name="maxprice"
-                    defaultValue={selectedProduct.price_max}
-                  />
-
-                  <label className="label">Rating</label>
-                  <input
-                    type="text"
-                    className="input"
-                    name="rating"
-                    defaultValue={selectedProduct.rating}
-                  />
-
-                  <label className="label">Origin Country</label>
-                  <input
-                    type="text"
-                    className="input"
-                    name="origin"
-                    defaultValue={selectedProduct.origin_country}
-                  />
-
-                  <label className="label">Available Quantity</label>
-                  <input
-                    type="text"
-                    className="input"
-                    placeholder="Enter available quantity"
-                    name="quantity"
-                    defaultValue={selectedProduct.available_quantity}
-                  />
-
-                  <div className="modal-action">
-                    <button
-                      className="btn w-full border-none
-                                     bg-primary text-white hover:bg-primary/80"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </fieldset>
-              </form>
-            )}
-            <div className="modal-action">
-              <form method="dialog">
-                <button className="btn">Close</button>
-              </form>
+          <td>
+            <div className="avatar">
+              <div className="mask mask-squircle w-16 h-16">
+                <img src={data.product_images} alt={data.product_name} />
+              </div>
             </div>
-          </div>
-        </dialog>
+          </td>
+
+          <td className="font-medium">{data.product_name}</td>
+          <td className="text-center">{data.price_min}</td>
+          <td className="text-center">{data.price_max}</td>
+          <td className="text-center">{data.origin_country}</td>
+          <td className="text-center">{data.rating}</td>
+          <td className="text-center">{data.available_quantity}</td>
+
+          <td className="text-center">
+            <button
+              onClick={() => handleRemoveExports(data._id)}
+              className="btn btn-error btn-xs text-white"
+            >
+              Delete
+            </button>
+          </td>
+
+          <td className="text-center">
+            <button
+              onClick={() => handleUpdateExports(data)}
+              className="btn btn-primary btn-xs"
+            >
+              Update
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+        <dialog ref={exportModalRef} className="modal">
+  <div className="modal-box bg-base-100">
+    <h3 className="font-semibold text-lg mb-4">
+      Update Export Product
+    </h3>
+
+    {selectedProduct && (
+      <form onSubmit={handleModalForm} className="space-y-3">
+        <input className="input input-bordered w-full" defaultValue={selectedProduct._id} name="id" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.product_images} name="image" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.product_name} name="name" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.price_min} name="minprice" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.price_max} name="maxprice" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.rating} name="rating" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.origin_country} name="origin" />
+        <input className="input input-bordered w-full" defaultValue={selectedProduct.available_quantity} name="quantity" />
+
+        <button className="btn btn-primary w-full mt-3">
+          Save Changes
+        </button>
+      </form>
+    )}
+
+    <form method="dialog" className="mt-4">
+      <button className="btn btn-ghost w-full">Close</button>
+    </form>
+  </div>
+</dialog>
+
       </div>
     </div>
   );

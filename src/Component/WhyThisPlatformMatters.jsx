@@ -38,14 +38,14 @@ const impacts = [
 
 const WhyThisPlatformMatters = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-base-200 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
             Why Choose Our Platform
           </h2>
-          <p className="text-gray-600">
+          <p className="text-base-content/70">
             Making global trade simple, efficient, and reliable for businesses of all sizes.
           </p>
         </div>
@@ -55,7 +55,7 @@ const WhyThisPlatformMatters = () => {
           {impacts.map((item) => (
             <div
               key={item.id}
-              className="flex items-start gap-4 p-4 rounded-xl hover:bg-white shadow hover:shadow-lg transition"
+              className="flex items-start gap-4 p-6 rounded-xl shadow-md hover:shadow-xl transition-colors duration-300 bg-base-100"
             >
               {/* Icon Circle */}
               <div
@@ -66,8 +66,8 @@ const WhyThisPlatformMatters = () => {
 
               {/* Text */}
               <div>
-                <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+                <h3 className="font-semibold text-lg text-base-content mb-1">{item.title}</h3>
+                <p className="text-base-content/70">{item.description}</p>
               </div>
             </div>
           ))}

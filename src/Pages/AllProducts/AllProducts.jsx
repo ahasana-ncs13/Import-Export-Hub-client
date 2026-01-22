@@ -8,7 +8,6 @@ const AllProducts = () => {
 
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-
   const productsPerPage = 8;
 
   // 🔍 Filter products
@@ -24,22 +23,16 @@ const AllProducts = () => {
     startIndex + productsPerPage
   );
 
-  // ⬅ Previous
   const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  // ➡ Next
   const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
   return (
-    <div className="w-11/12 mx-auto py-10 pt-26">
+    <section className="w-11/12 mx-auto py-10 transition-colors duration-300 pt-26">
       <Helmet>
         <title>All Products - Import Export Hub</title>
       </Helmet>
@@ -49,36 +42,37 @@ const AllProducts = () => {
         <h1 className="text-4xl font-bold text-primary mb-2">
           Global Product Catalog
         </h1>
-        <p className="text-gray-500">
+        <p className="text-base-content/70">
           Explore globally sourced products from trusted exporters.
         </p>
       </div>
 
-      {/* Search */}
-      <div className="flex justify-between items-center p-5">
-        <p className="text-primary font-bold text-3xl">
+      {/* Search & Count */}
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-5">
+        <p className="text-primary font-bold text-2xl sm:text-3xl">
           Products ({filteredProducts.length})
         </p>
 
         <input
           type="text"
           placeholder="Search products..."
-          className="input input-bordered"
+          value={search}
           onChange={(e) => {
             setSearch(e.target.value);
             setCurrentPage(1);
           }}
+          className="input input-bordered w-full sm:w-64 border-base-300 bg-base-100 text-base-content placeholder:text-base-content/50 focus:border-primary focus:ring focus:ring-primary/30 transition-colors duration-300"
         />
       </div>
 
       {/* Product Grid */}
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 bg-primary lg:p-15 p-5 rounded-xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 sm:p-8 lg:p-12 rounded-xl bg-base-200 transition-colors duration-300">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))
         ) : (
-          <p className="text-white text-xl font-semibold col-span-3 text-center">
+          <p className="text-base-content/80 text-xl font-semibold col-span-full text-center">
             No products found.
           </p>
         )}
@@ -92,7 +86,7 @@ const AllProducts = () => {
             <button
               onClick={handlePrev}
               disabled={currentPage === 1}
-              className="join-item btn "
+              className="join-item btn btn-outline border-base-300 text-base-content hover:border-primary hover:bg-primary/10 hover:text-primary transition-colors duration-300"
             >
               Prev
             </button>
@@ -102,10 +96,8 @@ const AllProducts = () => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page + 1)}
-                className={`join-item btn ${
-                  currentPage === page + 1
-                    && "btn-primary text-white"
-                    
+                className={`join-item btn border-base-300 text-base-content hover:border-primary hover:bg-primary/10 hover:text-primary transition-colors duration-300 ${
+                  currentPage === page + 1 ? "btn-primary text-white" : ""
                 }`}
               >
                 {page + 1}
@@ -116,14 +108,14 @@ const AllProducts = () => {
             <button
               onClick={handleNext}
               disabled={currentPage === totalPages}
-              className="join-item btn btn-outline"
+              className="join-item btn btn-outline border-base-300 text-base-content hover:border-primary hover:bg-primary/10 hover:text-primary transition-colors duration-300"
             >
               Next
             </button>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

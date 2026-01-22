@@ -31,7 +31,7 @@ const DashboardLayout = () => {
         {/* ================= Main Content ================= */}
         <div className="drawer-content flex flex-col">
           {/* ---------- Navbar ---------- */}
-          <nav className="navbar w-full bg-amber-50 shadow-sm">
+          <nav className="navbar w-full bg-amber-50 dark:bg-gray-900 shadow-sm transition-colors duration-300">
             <label
               htmlFor="my-drawer-4"
               aria-label="open sidebar"
@@ -53,11 +53,13 @@ const DashboardLayout = () => {
               </svg>
             </label>
 
-            <div className="px-4 font-semibold">Dashboard</div>
+            <div className="px-4 font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">
+              Dashboard
+            </div>
           </nav>
 
           {/* ---------- Page Content ---------- */}
-          <main className="flex-1 p-4 md:p-6 bg-base-100">
+          <main className="flex-1 p-4 md:p-6 bg-base-100 dark:bg-gray-900 transition-colors duration-300">
             {/* Welcome Section */}
             <div className="mb-6">
               <div className="card bg-linear-to-r from-primary to-secondary text-primary-content shadow-md">
@@ -65,16 +67,15 @@ const DashboardLayout = () => {
                   <h1 className="text-2xl md:text-3xl flex gap-2 items-center font-bold">
                     Welcome <MdOutlineCelebration />
                   </h1>
-                  <p className="text-sm md:text-base opacity-90">
-                    Manage your activities and track progress from your
-                    dashboard
+                  <p className="text-sm md:text-base opacity-90 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+                    Manage your activities and track progress from your dashboard
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Page Content */}
-            <div className="bg-base-200 rounded-xl p-4 md:p-6 shadow-sm min-h-[60vh]">
+            <div className="bg-base-200 dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-sm min-h-[60vh] transition-colors duration-300">
               <Outlet />
             </div>
           </main>
@@ -84,10 +85,10 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
 
-          <aside className="flex min-h-full flex-col bg-amber-50 w-64 p-2">
+          <aside className="flex min-h-full flex-col bg-amber-50 dark:bg-gray-900 w-64 p-2 transition-colors duration-300">
             {/* ---------- Menu ---------- */}
             {currentUser?.role === "Importer" && (
-              <ul className="menu w-full grow">
+              <ul className="menu w-full grow text-gray-800 dark:text-gray-200 transition-colors duration-300">
                 <li>
                   <Link to="/" className="tooltip" data-tip="Home">
                     <IoHome /> <span>Home</span>
@@ -115,7 +116,7 @@ const DashboardLayout = () => {
             )}
 
             {currentUser?.role === "Exporter" && (
-              <ul className="menu w-full grow">
+              <ul className="menu w-full grow text-gray-800 dark:text-gray-200 transition-colors duration-300">
                 <li>
                   <Link to="/" className="tooltip" data-tip="Home">
                     <IoHome /> <span>Home</span>
@@ -155,21 +156,15 @@ const DashboardLayout = () => {
             <div className="dropdown dropdown-top w-full mt-auto">
               <div
                 tabIndex={0}
-                className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-base-300"
+                className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-base-300 dark:hover:bg-gray-700 transition-colors duration-300"
               >
                 <div className="avatar">
                   <div className="w-9 rounded-full ring ring-primary ring-offset-2">
                     <img src={user?.photoURL} alt="profile" />
                   </div>
                 </div>
-                <span className="font-medium">{user?.displayName}</span>
+                <span className="font-medium text-gray-800 dark:text-gray-200 transition-colors duration-300">{user?.displayName}</span>
               </div>
-
-              {/* <ul className="menu menu-sm dropdown-content mb-2 shadow bg-base-100 rounded-box w-44">
-                <li>
-                  <Link to="/dashboardLayout/userProfile">Profile</Link>
-                </li>
-              </ul> */}
             </div>
           </aside>
         </div>

@@ -20,49 +20,49 @@ const ProductCard = ({ product }) => {
   return (
     <div className="w-full">
       {/* Card */}
-      <div className="bg-white rounded-xl shadow-md p-4 h-[430px] flex flex-col">
+      <div className="bg-base-100 dark:bg-base-200 rounded-xl shadow-md p-4 flex flex-col h-full min-h-[420px] transition-colors duration-300">
         
         {/* Image */}
         <img
           src={product_images}
           alt={product_name}
-          className="w-full h-[220px] object-cover rounded-lg"
+          className="w-full h-[180px] sm:h-[200px] md:h-[220px] object-cover rounded-lg"
         />
 
         {/* Content */}
-        <div className="flex-1 flex flex-col">
-          <h2 className="text-xl font-bold text-center text-primary my-4 line-clamp-2">
+        <div className="flex flex-col flex-1">
+          <h2 className="text-lg sm:text-xl font-bold text-center text-primary my-3 line-clamp-2 transition-colors duration-300">
             {product_name}
           </h2>
 
-          <p className="text-gray-600 flex items-center gap-2">
-            <span className="text-primary">
-              <BsCurrencyDollar />
-            </span>
+          {/* Price */}
+          <p className="flex items-center gap-2 text-sm sm:text-base text-base-content/70 dark:text-base-content/60 transition-colors duration-300">
+            <BsCurrencyDollar className="text-primary" />
             {price_min} – {price_max}
           </p>
 
-          <div className="flex justify-between items-center mt-2 text-sm">
-            <p className="flex items-center gap-1 text-gray-600">
+          {/* Meta Info */}
+          <div className="flex flex-wrap justify-between items-center gap-2 mt-3 text-xs sm:text-sm text-base-content/70 dark:text-base-content/60 transition-colors duration-300">
+            <p className="flex items-center gap-1">
               <IoLocationSharp className="text-primary" />
               {origin_country}
             </p>
 
-            <p className="flex items-center gap-1 text-gray-600">
+            <p className="flex items-center gap-1">
               <FaStar className="text-primary" />
               {rating}
             </p>
 
-            <p className="flex items-center gap-1 text-gray-600">
+            <p className="flex items-center gap-1">
               <MdLocalGroceryStore className="text-primary" />
               {available_quantity}
             </p>
           </div>
 
-          {/* Button pushed to bottom */}
+          {/* Button */}
           <Link
             to={`/productdetails/${_id}`}
-            className="mt-auto block text-center bg-secondary py-2 rounded-lg text-primary font-bold hover:bg-lime-600 hover:text-white transition"
+            className="mt-auto text-center py-2 sm:py-2.5 rounded-lg bg-secondary dark:bg-secondary-dark dark:text-primary-dark font-semibold hover:bg-lime-600 hover:text-white transition-colors duration-300"
           >
             See Details
           </Link>
